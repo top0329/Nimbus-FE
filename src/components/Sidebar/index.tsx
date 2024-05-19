@@ -138,18 +138,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <div className='flex flex-col px-[30px] py-[30px] gap-[50px]'>
           <div className='flex flex-row justify-start gap-5'>
             <a href="https://t.me/nimbusnetwork" target="_blank" rel="noopener noreferrer">
-              <img src="./telegram.svg" alt="icon" className='socialImg' />
+              <img src="/telegram.svg" alt="icon" className='socialImg' />
             </a>
             <a href="https://twitter.com/Nimbus_Network" target="_blank" rel="noopener noreferrer">
-              <img src="./x.svg" alt="icon" className='socialImg' />
+              <img src="/x.svg" alt="icon" className='socialImg' />
             </a>
           </div>
           <div className='flex flex-row items-center justify-between'>
             {
               isConnected ?
-                (<img src="./avatar.png" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
+                (<img src="/avatar.png" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
                 :
-                (<img src="./Account.ico" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
+                (<img src="/Account.ico" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
             }
             <section className='font-space-grotesk'>
               <h1 className='light-theme-color text-[16px]'>{isConnected ? 'James Bond' : 'No connected'}</h1>

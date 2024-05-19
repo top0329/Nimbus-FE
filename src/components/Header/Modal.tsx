@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NetworkSelector from '../NetworkSelector';
 import DepositSelector from '../DepositSelector';
-import { Loading } from "./Loading";
+import { Loading } from '../Loading';
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;

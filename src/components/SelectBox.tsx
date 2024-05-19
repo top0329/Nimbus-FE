@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 
 interface SelectBoxProps {
     heading: string,
-    options: { value: string; label: string }[];
-    selectedValue: string;
-    // onChange: (value: string) => void;
+    options: optionType[];
+    setLocationList: (locations: string[]) => void;
+    setInstanceId: (id: string) => void;
 }
-
-const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, selectedValue }) => {
-    const [selectedOption, setSelectedOption] = useState<string>(selectedValue); // State to track the selected option
+interface optionType {
+    value: string;
+    label: string;
+    locations: string[];
+}
+const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList, setInstanceId }) => {
+    const [selectedOption, setSelectedOption] = useState<string>(""); // State to track the selected option
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(e.target.value); // Update the selected option when an option is chosen
+        setSelectedOption(e.target.value);
+        setLocationList(options[e.target.selectedIndex].locations)
+        setInstanceId(e.target.value);
     };
     return (
         <div className='flex flex-col gap-5 font-space-grotesk'>
             <h1 className='text-[20px] dark-theme-color'>{heading}<span className=' text-red-700'>*</span></h1>
             <div className="relative inline-block w-full">
                 <select className="py-3 border-[1px] border-dashed rounded-[10px] light-theme-color block appearance-none w-full border-gray-400 hover:border-gray-500 px-4 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
-                    onChange={handleSelectChange} // Call handleSelectChange on select change
+                    onChange={handleSelectChange}
                     value={selectedOption}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >

@@ -8,7 +8,7 @@ const Rent: React.FC = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-10 xl:grid-cols-3 2xl:gap-10 2xl:grid-cols-4">
         {
           data.assets.map((item, index) => (
-            <AssetCard key={index} img={item.img} name={item.name} desc={item.desc} />
+            <AssetCard key={index} instanceId = {item.id} img={item.img} name={item.name} desc={item.desc} />
           ))
         }
       </div>

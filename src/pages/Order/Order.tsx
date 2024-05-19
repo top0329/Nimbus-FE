@@ -1,29 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from '../../Redux/Reducers/orderSlice';
 // import CheckBoxWithLabel from "../../components/CheckBoxWithLabel";
 import LabelCheckBox from "../../components/LabelCheckBox";
 import SelectBox from "../../components/SelectBox";
-import CountryBox from "../../components/CountryBox";
-
-const options = [
-    { value: 'option1', label: 'NVIDIA H100 - 3vCPUs 30 GB RAM 350 GB NVMe' },
-    { value: 'option2', label: 'NameHo|' },
-    // Add more options as needed
-];
-
-
+import LocationBox from "../../components/LocationBox";
+import Summary from "./Summary";
+import { data } from "../../data";
+type InstanceType = {
+    id: string;
+    vcpu_count: number;
+    ram: number;
+    disk: number;
+    disk_count: number;
+    bandwidth: number;
+    monthly_cost: number;
+    type: string;
+    locations: string[];
+    gpu_vram_gb: number;
+    gpu_type: string;
+};
+const detail = data.assetsDetail;
+// Function to safely get an instance by ID
+function getInstanceById(data: Record<string, InstanceType[]>, id: string): InstanceType[] {
+    const instances = data[id];
+    return instances; // Return the first instance or undefined
+}
+interface optionType {
+    value: string;
+    label: string;
+    locations: string[];
+}
 const Order: React.FC = () => {
+
+    const [selectedInstanceId, setInstanceId] = useState<string>("");
+    const [locationId, setLocationId] = useState<string>("");
+    const [ddosProtection, setDdosProtection] = useState<boolean>(false);
+    const [enableIP6, setEnableIP6] = useState<boolean>(false);
+    const [enableBackUps, setEnableBackUps] = useState<boolean>(false);
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    // useEffect(() => {
+    //     console.log("==========>", selectedInstanceId, locationId, ddosProtection);
+    // }, [selectedInstanceId, locationId, ddosProtection]);
+
+    const [locationList, setLocationList] = useState<string[]>([]);
+    const instance = useParams<{ id: string }>();
+    const instanceType = instance.id;
+    const options: optionType[] = [];
+    if (instanceType) {
+        const gpuTypes = getInstanceById(detail, instanceType);
+        gpuTypes.map((item) => {
+            let detail = {
+                value: item.id,
+                label: `NVIDIA ${instanceType} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+                locations: item.locations
+            }
+            options.push(detail);
+        })
+    }
     const orderList = useSelector((state: RootState) => state.orders);
     const lastOrder = orderList.orders[orderList.orders.length - 1];
     const navigate = useNavigate();
+
     const handleOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("dfsdfsdfs")
         event.preventDefault();
-        navigate("/overview");
+        setModalOpen(true);
     }
+
     return (
         <DefaultLayout>
             <div className="flex flex-col w-full gap-10">
@@ -46,9 +96,9 @@ const Order: React.FC = () => {
                         <div className="flex flex-col font-space-grotesk text-4 gap-4">
                             <h1 className="light-theme-color font-bold">Additional Feature</h1>
                             <div className="py-4 pl-4 md:px-4 gap-4 flex flex-col md:flex-row flex-wrap border-[1px] border-dashed rounded-[10px] p-1 justify-between" style={{ borderColor: "#4D8CEC" }}>
-                                <LabelCheckBox label="DDoS Protection" />
-                                <LabelCheckBox label="Enable IPv6" />
-                                <LabelCheckBox label="Enable Backups" />
+                                <LabelCheckBox onChange={setDdosProtection} label="DDoS Protection" />
+                                <LabelCheckBox onChange={setEnableIP6} label="Enable IPv6" />
+                                <LabelCheckBox onChange={setEnableBackUps} label="Enable Backups" />
                             </div>
                         </div>
                     </div>
@@ -57,20 +107,23 @@ const Order: React.FC = () => {
                     <SelectBox
                         heading="Select the server specification"
                         options={options}
-                        selectedValue="option1"
-                    // onChange={handleChange}
+                        setLocationList={setLocationList}
+                        setInstanceId={setInstanceId}
                     />
-                    <CountryBox />
-                    <SelectBox
+
+                    <LocationBox locations={locationList} setLocationId={setLocationId} />
+
+                    {/* <SelectBox
                         heading="Hostname"
                         options={options}
                         selectedValue="option2"
                     // onChange={handleChange}
-                    />
+                    /> */}
                     <hr className="h-[3px] light-theme-color" />
                     <button onClick={handleOrder} className='self-end customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk md:w-[30%]' style={{ backgroundColor: "#4D8CEC" }}>
                         Proceed Order
                     </button>
+                    <Summary isOpen={isModalOpen} onClose={closeModal} />
                 </div>
             </div>
         </DefaultLayout>

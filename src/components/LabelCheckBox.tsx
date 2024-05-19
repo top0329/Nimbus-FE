@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 interface CheckboxWithLabelProps {
     label: string;
+    onChange: (status: boolean) => void;
 }
-const LabelCheckBox: React.FC<CheckboxWithLabelProps> = ({ label }) => {
+const LabelCheckBox: React.FC<CheckboxWithLabelProps> = ({ label, onChange }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
+        onChange(!isChecked);
     };
     return (
         <label className="flex items-center cursor-pointer">

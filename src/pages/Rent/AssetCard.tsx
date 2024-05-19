@@ -4,11 +4,12 @@ import { addOrder } from '../../Redux/Reducers/orderSlice';
 import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
+  instanceId: string;
   img: string;
   name: string;
   desc: string;
 }
-const AssetCard: React.FC<CardProps> = ({ img, name, desc }) => {
+const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,7 +22,8 @@ const AssetCard: React.FC<CardProps> = ({ img, name, desc }) => {
       instanceDesc: desc
     }
     dispatch(addOrder(payload));
-    navigate('/order');
+    console.log("instanceId", instanceId);
+    navigate(`/order/${instanceId}`);
   };
 
   return (
