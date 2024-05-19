@@ -116,7 +116,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             pathname == "/" && item.path == "dashboard" ? (
                               <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
                             ) : (
-                              (pathname == "/order" || pathname == "/overview") && item.path == "rent" ? (
+                              (pathname.includes("/order") || pathname.includes("/overview")) && item.path == "rent" ? (
                                 <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
                               ) : (
                                 <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />

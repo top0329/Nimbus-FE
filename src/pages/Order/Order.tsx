@@ -157,7 +157,7 @@ const Order: React.FC = () => {
                         setOsId={setOsId}
                         setOsLable={setOsLable}
                     />
-                    <input type="text" value={hostname} onChange={(e) => setHostName(e.target.value)} placeholder="Nam Ho" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
+                    <input type="text" value={hostname} onChange={(e) => setHostName(e.target.value)} placeholder="Nam Ho" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
                     <hr className="h-[3px] light-theme-color" />
                     <button onClick={handleOrder} className='self-end customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk md:w-[30%]' style={{ backgroundColor: "#4D8CEC" }}>
                         Proceed Order
