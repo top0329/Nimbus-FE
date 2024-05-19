@@ -13,7 +13,7 @@ const networkData: Nework[] = [
 
 const NetworkSelector: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<Nework>({ svgPath: "./ethereum-logo.svg", networkName: "Ethereum" });
+    const [selectedOption, setSelectedOption] = useState<Nework>({ svgPath: "/ethereum-logo.svg", networkName: "Ethereum" });
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
