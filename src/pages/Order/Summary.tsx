@@ -5,26 +5,23 @@ import { Loading } from '../../components/Loading';
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
+    orderDetail: orderSummary | undefined;
 }
-interface orderSummary {
-    instanceType: string;
-    instanceDetail: string;
+
+export interface orderSummary {
+    instanceId: string;
+    name: string;
+    os: string | null;
     location: string;
-    
-
+    locationId: string;
+    summary: string | null;
+    ddosProtection: boolean;
+    enableIpv6: boolean;
+    enableBackUps: boolean;
 }
 
-const Summary: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
 
-    //instanceType
-    const instanceType = 'nvidia';
-    const instanceDetail = '';
-    const location = ''
-
-
-
-
-    const navigate = useNavigate();
     if (!isOpen) return null;
     const [status, setStatus] = useState<string>("");
     const handleSubmit = () => {
@@ -33,7 +30,7 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             setStatus("");
             onClose();
         }, 1000);
-        navigate('/overview');
+        // navigate('/overview');
     }
     return (
         <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center">
@@ -47,37 +44,58 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 <h1 className='font-press-start-2p dark-theme-color text-[24px] text-center mb-4'>Order Summary</h1>
                                 <div className='flex flex-col gap-4'>
                                     <div className='text-left flex flex-col gap-2'>
-                                        <h2 className='dark-theme-color text-[16px]'>Processor type</h2>
+                                        <h2 className='dark-theme-color text-[16px]'>Host Name</h2>
                                         <div className='border border-dashed rounded-[10px] p-2' style={{ borderColor: "#4D8CEC" }}>
-                                            <h2 className='light-theme-color text-[16px]'>nvidia</h2>
+                                            <h2 className='light-theme-color text-[16px]'>{orderDetail?.name}</h2>
                                         </div>
                                     </div>
                                     <div className='text-left flex flex-col gap-2'>
                                         <h2 className='dark-theme-color text-[16px]'>Processor type</h2>
                                         <div className='border border-dashed rounded-[10px] p-2' style={{ borderColor: "#4D8CEC" }}>
-                                            <h2 className=' light-theme-color text-[16px]'>nvidia</h2>
+                                            <h2 className=' light-theme-color md:text-[16px] text-[12px]'>{orderDetail?.summary}</h2>
                                         </div>
                                     </div>
                                     <div className='text-left flex flex-col gap-2'>
                                         <h2 className='dark-theme-color text-[16px]'>Server location</h2>
                                         <div className='border border-dashed rounded-[10px] p-2' style={{ borderColor: "#4D8CEC" }}>
-                                            <h2 className=' light-theme-color text-[16px]'>Operating system</h2>
+                                            <h2 className=' light-theme-color text-[16px]'>{orderDetail?.location}</h2>
                                         </div>
                                     </div>
                                     <div className='text-left flex flex-col gap-2'>
-                                        <h2 className='dark-theme-color text-[16px]'>Order Summary</h2>
+                                        <h2 className='dark-theme-color text-[16px]'>Operating System</h2>
                                         <div className='border border-dashed rounded-[10px] p-2' style={{ borderColor: "#4D8CEC" }}>
-                                            <h2 className=' light-theme-color text-[16px]'>nvidia</h2>
+                                            <h2 className=' light-theme-color text-[16px]'>{orderDetail?.os}</h2>
                                         </div>
                                     </div>
                                     <div className='text-left flex flex-col gap-2'>
                                         <h2 className='dark-theme-color text-[16px]'>Additional features</h2>
-                                        <div className='flex flex-row'>
+                                        {
+                                            orderDetail?.enableIpv6 &&
                                             <div className='flex flex-row'>
-                                                <img src="/check-icon.svg" />
-                                                <h2 className=' light-theme-color text-[16px]'>Enable IPv6</h2>
+                                                <div className='flex flex-row'>
+                                                    <img src="/check-icon.svg" />
+                                                    <h2 className=' light-theme-color text-[16px]'>Enable IPv6</h2>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+                                        {
+                                            orderDetail?.enableBackUps &&
+                                            <div className='flex flex-row'>
+                                                <div className='flex flex-row'>
+                                                    <img src="/check-icon.svg" />
+                                                    <h2 className=' light-theme-color text-[16px]'>Enable BackUps</h2>
+                                                </div>
+                                            </div>
+                                        }
+                                        {
+                                            orderDetail?.ddosProtection &&
+                                            <div className='flex flex-row'>
+                                                <div className='flex flex-row'>
+                                                    <img src="/check-icon.svg" />
+                                                    <h2 className=' light-theme-color text-[16px]'>DDosProtection Enable</h2>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
 

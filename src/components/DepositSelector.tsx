@@ -10,7 +10,7 @@ const DepositSelector: React.FC<({ setDepositAmount: (amount: string) => void })
         <>
             {
                 deposits.map((deposit, index) => (
-                    <button key={index} onClick={() => { setIndex(index); setDepositAmount(deposit); }} className={`border-[1px] rounded-[10px] px-5 py-3 ${(selectedIndex == index) ? 'bg-light-theme-color text-white' : 'bg-transparent light-theme-color'} text-[18px]`} style={{ borderColor: "#4D8CEC" }}>${deposit}</button >
+                    <button key={index} onClick={() => { setIndex(index); setDepositAmount(deposit); }} className={`border-[1px] rounded-[10px] px-5 py-3 ${(selectedIndex == index) ? 'bg-light-theme-color text-white' : 'bg-transparent light-theme-color'} text-[14px] md:text-[18px]`} style={{ borderColor: "#4D8CEC" }}>${deposit}</button >
                 ))
             }
         </>

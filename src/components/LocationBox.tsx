@@ -10,12 +10,13 @@ interface Location {
 interface LocationBoxProps {
     locations: string[];
     setLocationId: (id: string) => void;
+    setLocation: (id: string) => void;
 }
 export function filterLocations(locationData: Location[], locations: string[]) {
     // Filter the locationData based on the locations array
     return locationData.filter(location => locations.includes(location.id));
 }
-const LocationBox: React.FC<LocationBoxProps> = ({ locations, setLocationId }) => {
+const LocationBox: React.FC<LocationBoxProps> = ({ locations, setLocationId, setLocation }) => {
     const locationList: Location[] = filterLocations(locationData, locations);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Location | null>(null);
@@ -23,16 +24,14 @@ const LocationBox: React.FC<LocationBoxProps> = ({ locations, setLocationId }) =
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-
     const handleOptionSelect = (country: Location) => {
         setSelectedOption(country);
         setIsOpen(false);
         setLocationId(country.id);
+        setLocation(country.name);
     };
-
     useEffect(() => {
-        setSelectedOption(locationList[0]);
-        // setLocationId(locationList[0]?.id);
+        setSelectedOption(null);
     }, [locations])
 
     return (

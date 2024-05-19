@@ -84,7 +84,7 @@ const data = {
             {
                 "id": "vcg-a16-2c-8g-2vram",
                 "vcpu_count": 2,
-                "ram": 8192,
+                "ram": 8,
                 "disk": 50,
                 "disk_count": 1,
                 "bandwidth": 1024,
@@ -105,7 +105,7 @@ const data = {
             {
                 "id": "vcg-a16-2c-16g-4vram",
                 "vcpu_count": 2,
-                "ram": 16384,
+                "ram": 16,
                 "disk": 80,
                 "disk_count": 1,
                 "bandwidth": 2048,
@@ -126,7 +126,7 @@ const data = {
             {
                 "id": "vcg-a16-3c-32g-8vram",
                 "vcpu_count": 3,
-                "ram": 32768,
+                "ram": 32,
                 "disk": 170,
                 "disk_count": 1,
                 "bandwidth": 3072,
@@ -147,10 +147,10 @@ const data = {
             {
                 "id": "vcg-a16-6c-64g-16vram",
                 "vcpu_count": 6,
-                "ram": 65536,
+                "ram": 64,
                 "disk": 350,
                 "disk_count": 1,
-                "bandwidth": 6144,
+                "bandwidth": 6,
                 "monthly_cost": 344,
                 "type": "vcg",
                 "locations": [
@@ -168,10 +168,10 @@ const data = {
             {
                 "id": "vcg-a16-12c-128g-32vram",
                 "vcpu_count": 12,
-                "ram": 131072,
+                "ram": 128,
                 "disk": 700,
                 "disk_count": 1,
-                "bandwidth": 10240,
+                "bandwidth": 10,
                 "monthly_cost": 688,
                 "type": "vcg",
                 "locations": [
@@ -189,10 +189,10 @@ const data = {
             {
                 "id": "vcg-a16-24c-256g-64vram",
                 "vcpu_count": 24,
-                "ram": 262144,
+                "ram": 256,
                 "disk": 1200,
                 "disk_count": 1,
-                "bandwidth": 12288,
+                "bandwidth": 12,
                 "monthly_cost": 1375,
                 "type": "vcg",
                 "locations": [
@@ -210,10 +210,10 @@ const data = {
             {
                 "id": "vcg-a16-48c-496g-128vram",
                 "vcpu_count": 48,
-                "ram": 507904,
+                "ram": 512,
                 "disk": 1500,
                 "disk_count": 1,
-                "bandwidth": 15360,
+                "bandwidth": 16,
                 "monthly_cost": 2750,
                 "type": "vcg",
                 "locations": [
@@ -230,7 +230,7 @@ const data = {
             {
                 "id": "vcg-a16-96c-960g-256vram",
                 "vcpu_count": 96,
-                "ram": 983040,
+                "ram": 1024,
                 "disk": 1700,
                 "disk_count": 1,
                 "bandwidth": 25600,
@@ -247,7 +247,7 @@ const data = {
         "A40": [{
             "id": "vcg-a40-1c-5g-2vram",
             "vcpu_count": 1,
-            "ram": 5120,
+            "ram": 5,
             "disk": 90,
             "disk_count": 1,
             "bandwidth": 3072,
@@ -260,7 +260,7 @@ const data = {
         {
             "id": "vcg-a40-2c-10g-4vram",
             "vcpu_count": 2,
-            "ram": 10240,
+            "ram": 10,
             "disk": 180,
             "disk_count": 1,
             "bandwidth": 4096,
@@ -275,10 +275,10 @@ const data = {
         {
             "id": "vcg-a40-4c-20g-8vram",
             "vcpu_count": 4,
-            "ram": 20480,
+            "ram": 20,
             "disk": 360,
             "disk_count": 1,
-            "bandwidth": 5120,
+            "bandwidth": 5,
             "monthly_cost": 210,
             "type": "vcg",
             "locations": [],
@@ -288,10 +288,10 @@ const data = {
         {
             "id": "vcg-a40-6c-30g-12vram",
             "vcpu_count": 6,
-            "ram": 30720,
+            "ram": 30,
             "disk": 550,
             "disk_count": 1,
-            "bandwidth": 6144,
+            "bandwidth": 6,
             "monthly_cost": 315,
             "type": "vcg",
             "locations": [
@@ -303,10 +303,10 @@ const data = {
         {
             "id": "vcg-a40-8c-40g-16vram",
             "vcpu_count": 8,
-            "ram": 40960,
+            "ram": 40,
             "disk": 740,
             "disk_count": 1,
-            "bandwidth": 8192,
+            "bandwidth": 8,
             "monthly_cost": 420,
             "type": "vcg",
             "locations": [
@@ -319,10 +319,10 @@ const data = {
         {
             "id": "vcg-a40-12c-60g-24vram",
             "vcpu_count": 12,
-            "ram": 61440,
+            "ram": 60,
             "disk": 1110,
             "disk_count": 1,
-            "bandwidth": 10240,
+            "bandwidth": 10,
             "monthly_cost": 625,
             "type": "vcg",
             "locations": [
@@ -334,10 +334,10 @@ const data = {
         {
             "id": "vcg-a40-24c-120g-48vram",
             "vcpu_count": 24,
-            "ram": 122880,
+            "ram": 120,
             "disk": 1400,
             "disk_count": 1,
-            "bandwidth": 15360,
+            "bandwidth": 16,
             "monthly_cost": 1250,
             "type": "vcg",
             "locations": [
@@ -349,10 +349,10 @@ const data = {
         {
             "id": "vcg-a40-96c-480g-192vram",
             "vcpu_count": 96,
-            "ram": 491520,
+            "ram": 500,
             "disk": 1400,
             "disk_count": 1,
-            "bandwidth": 61440,
+            "bandwidth": 60,
             "monthly_cost": 5000,
             "type": "vcg",
             "locations": [],
@@ -362,7 +362,7 @@ const data = {
         "A100": [{
             "id": "vcg-a100-1c-6g-4vram",
             "vcpu_count": 1,
-            "ram": 6144,
+            "ram": 6,
             "disk": 70,
             "disk_count": 1,
             "bandwidth": 1024,
@@ -378,7 +378,7 @@ const data = {
         {
             "id": "vcg-a100-1c-12g-8vram",
             "vcpu_count": 1,
-            "ram": 12288,
+            "ram": 12,
             "disk": 140,
             "disk_count": 1,
             "bandwidth": 1024,
@@ -394,7 +394,7 @@ const data = {
         {
             "id": "vcg-a100-2c-15g-10vram",
             "vcpu_count": 2,
-            "ram": 15360,
+            "ram": 16,
             "disk": 170,
             "disk_count": 1,
             "bandwidth": 2048,
@@ -409,7 +409,7 @@ const data = {
         {
             "id": "vcg-a100-3c-30g-20vram",
             "vcpu_count": 3,
-            "ram": 30720,
+            "ram": 30,
             "disk": 350,
             "disk_count": 1,
             "bandwidth": 3072,
@@ -426,10 +426,10 @@ const data = {
         {
             "id": "vcg-a100-6c-60g-40vram",
             "vcpu_count": 6,
-            "ram": 61440,
+            "ram": 60,
             "disk": 700,
             "disk_count": 1,
-            "bandwidth": 6144,
+            "bandwidth": 6,
             "monthly_cost": 875,
             "type": "vcg",
             "locations": [
@@ -443,10 +443,10 @@ const data = {
         {
             "id": "vcg-a100-12c-120g-80vram",
             "vcpu_count": 12,
-            "ram": 122880,
+            "ram": 120,
             "disk": 1400,
             "disk_count": 1,
-            "bandwidth": 10240,
+            "bandwidth": 10,
             "monthly_cost": 1750,
             "type": "vcg",
             "locations": [
@@ -461,10 +461,10 @@ const data = {
         {
             "id": "vcg-a100-24c-240g-160vram",
             "vcpu_count": 24,
-            "ram": 245760,
+            "ram": 250,
             "disk": 1400,
             "disk_count": 1,
-            "bandwidth": 10240,
+            "bandwidth": 10,
             "monthly_cost": 3500,
             "type": "vcg",
             "locations": [
@@ -478,10 +478,10 @@ const data = {
         {
             "id": "vcg-a100-48c-480g-320vram",
             "vcpu_count": 48,
-            "ram": 491520,
+            "ram": 500,
             "disk": 1400,
             "disk_count": 1,
-            "bandwidth": 15360,
+            "bandwidth": 16,
             "monthly_cost": 7000,
             "type": "vcg",
             "locations": [
@@ -494,7 +494,7 @@ const data = {
         {
             "id": "vcg-a100-96c-960g-640vram",
             "vcpu_count": 96,
-            "ram": 983040,
+            "ram": 1024,
             "disk": 2200,
             "disk_count": 1,
             "bandwidth": 25600,

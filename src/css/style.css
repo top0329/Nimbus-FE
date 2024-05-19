@@ -100,7 +100,7 @@
   filter: brightness(90%); /* Optionally, make the image slightly darker when pressed */
 }
 .customInput::placeholder{
-  color:#4D8CEC
+  color:#4D8CEC80
 }
 .customInput{
   color:#4D8CEC;

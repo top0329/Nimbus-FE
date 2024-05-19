@@ -11,17 +11,17 @@ interface CardProps {
 }
 const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const addOrderHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.log("calling.......")
     event.preventDefault();
-    const payload = {
-      instanceImage: img,
-      instanceName: name,
-      instanceDesc: desc
-    }
-    dispatch(addOrder(payload));
+    // const payload = {
+    //   instanceImage: img,
+    //   instanceName: name,
+    //   instanceDesc: desc
+    // }
+    // dispatch(addOrder(payload));
     console.log("instanceId", instanceId);
     navigate(`/order/${instanceId}`);
   };

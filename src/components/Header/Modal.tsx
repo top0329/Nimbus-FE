@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }, 1000);
     }
     return (
-        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center">
+        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center md:mx-0 mx-3">
             <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div className="py-4 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -34,8 +34,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                     <section className='flex flex-row justify-between gap-1'>
                                         <DepositSelector setDepositAmount={setDepositAmount} />
                                         <div className='flex flex-row items-center gap-2'>
-                                            <h2 className='text-[20px] dark-theme-color'>$</h2>
-                                            <input type="text" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-[80px] md:w-[100px] rounded-[10px] border-[1px] px-3 py-[10px] font-space-grotesk text-[18px] focus:outline-none" style={{ borderColor: "#4D8CEC", color: "#4D8CEC" }} />
+                                            <h2 className='text-[18px] md:text-[20px] dark-theme-color'>$</h2>
+                                            <input type="text" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} className="w-[60px] md:w-[100px] rounded-[10px] border-[1px] px-3 py-[10px] font-space-grotesk text-[14px] md:text-[18px] focus:outline-none" style={{ borderColor: "#4D8CEC", color: "#4D8CEC" }} />
                                         </div>
                                     </section>
                                 </div >

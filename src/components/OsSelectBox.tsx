@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
-
+import { os } from '../data';
 interface SelectBoxProps {
-    heading: string,
-    options: optionType[];
-    setLocationList: (locations: string[]) => void;
-    setInstanceId: (id: string) => void;
-    setInstanceLable: (id: string | null) => void;
+    heading: string;
+    osType: string;
+    options: osType[];
+    setOsId: (id: number) => void;
+    setOsLable: (id: string | null) => void;
 }
-interface optionType {
-    value: string;
-    label: string;
-    locations: string[];
+export interface osType {
+    "id": number;
+    "name": string;
+    "arch": string;
+    "family": string;
 }
-const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList, setInstanceId, setInstanceLable }) => {
+// Function to safely get an instance by ID
+function getOsById(data: Record<string, osType[]>, id: string): osType[] {
+    const osList = data[id];
+    return osList; // Return the first instance or undefined
+}
+function getNameById(id: number, osData: osType[]) {
+    const osItem = osData.find(os => os.id == id);
+    return osItem ? osItem.name : 'OS not found';
+}
+const OsSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOsId, setOsLable }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+        const selectedId = e.target.options[e.target.selectedIndex].getAttribute('data-label');
         setSelectedOption(e.target.value);
-        setLocationList(options[e.target.selectedIndex].locations)
-        setInstanceId(e.target.value);
-        setInstanceLable(selectedLabel);
+        setOsId(selectedId);
+        console.log(selectedId);
+        const osData = getOsById(os, osType);
+        const osLabel = getNameById(selectedId, osData);
+        setOsLable(osLabel);
+        console.log("======>", selectedId, osLabel);
     };
 
     return (
@@ -34,8 +47,8 @@ const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
                     {options.map((option, index) => (
-                        <option key={index} data-label={option.label} value={option.value} className='text-[11px] md:text-[16px]'>
-                            {option.label}
+                        <option key={index} data-label={option.id} value={option.name} className='text-[13px] md:text-[16px]'>
+                            {option.name}
                         </option>
                     ))}
                 </select>
@@ -49,4 +62,4 @@ const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList
     );
 };
 
-export default SelectBox;
+export default OsSelectBox;
