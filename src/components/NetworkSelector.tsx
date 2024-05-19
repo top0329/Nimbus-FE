@@ -6,8 +6,8 @@ interface Nework {
 }
 
 const networkData: Nework[] = [
-    { svgPath: "./ethereum-logo.svg", networkName: "Ethereum" },
-    { svgPath: "./tether-logo.svg", networkName: "USDT" }
+    { svgPath: "/ethereum-logo.svg", networkName: "Ethereum" },
+    { svgPath: "/tether-logo.svg", networkName: "USDT" }
 
 ];
 

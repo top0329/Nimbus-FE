@@ -46,10 +46,6 @@ const Order: React.FC = () => {
         setModalOpen(false);
     };
 
-    // useEffect(() => {
-    //     console.log("==========>", selectedInstanceId, locationId, ddosProtection);
-    // }, [selectedInstanceId, locationId, ddosProtection]);
-
     const [locationList, setLocationList] = useState<string[]>([]);
     const instance = useParams<{ id: string }>();
     const instanceType = instance.id;
