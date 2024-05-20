@@ -12,8 +12,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const { address, isConnected } = useAccount();
-  const user = useSelector((state) => state.user);
-
+  const user = useSelector((state: any) => state.user);
   const location = useLocation();
   const { pathname } = location;
   const trigger = useRef<any>(null);
@@ -149,7 +148,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <div className='flex flex-row items-center justify-between'>
             {
               isConnected ?
-                (<img src="/avatar.png" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
+                (<img src={`${user.avatar ? 'user.avatar' : '/Account.ico'}`} alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
                 :
                 (<img src="/Account.ico" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
             }

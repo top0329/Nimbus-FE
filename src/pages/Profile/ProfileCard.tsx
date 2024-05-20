@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import useScreenSize from '../../hooks/useScreenSize';
 
 const nodesData = [
@@ -28,7 +29,8 @@ const nodesData = [
     }
 ];
 const ProfileCard: React.FC = () => {
-    const currentBalance = 200;
+    const user = useSelector((state: any) => state.user);
+    const currentBalance = user.balance;
     const screenSize = useScreenSize();
     const isSmallScreen = screenSize.width <= 640; // Assuming 640px is the breakpoint for small screens
     return (

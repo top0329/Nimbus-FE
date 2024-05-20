@@ -1,16 +1,19 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useAccount } from 'wagmi';
 import { useNavigate } from 'react-router-dom';
 import toastr from 'toastr';
-
+import { addUserInfo } from '../../Redux/Reducers/userSlice';
+import axios from 'axios';
 import DefaultLayout from '../../layout/DefaultLayout';
 import ProfileCard from './ProfileCard';
 
-
+const ENDPOINT = 'http://localhost:5000';
 const Profile: React.FC = () => {
   const navigate = useNavigate();
-  const { isConnected } = useAccount();
+  const dispatch = useDispatch();
+  const { address, isConnected } = useAccount();
   const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
 
   useEffect(() => {
@@ -20,6 +23,26 @@ const Profile: React.FC = () => {
       navigate("/dashboard");
     }
   }, [isConnected, navigate]);
+
+  useEffect(() => {
+    if (isConnected && !hasShownWarningRef.current) {
+      //Backend Fetch & Register
+      axios.post(`${ENDPOINT}/api/user/${address}`)
+        .then(response => {
+          const { avatar, balance, wallet, nodes } = response.data.user;
+          dispatch(addUserInfo(
+            {
+              address: wallet,
+              avatar,
+              balance
+            }
+          ))
+        })
+        .catch(error => {
+          toastr.error("Server Disconnected.");
+        })
+    }
+  }, [isConnected]);
 
   return (
     <DefaultLayout>
