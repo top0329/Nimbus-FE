@@ -9,7 +9,7 @@ const Header = (props: {
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
   return (
-    <header className="sticky top-0 z-1 flex w-full bg-white font-space-grotesk" style={{ backgroundColor: "#F5FAFF" }}>
+    <header className="sticky top-0 z-1 flex w-full bg-white font-space-grotesk" style={{ backgroundColor: "#F5FAFF" }} >
       <div className="flex flex-grow items-center justify-between px-[30px] pt-[30px] md:px-[30px] 2xl:px-[30px] md:pr-0 pr-0">
         <NavLink to="/">
           <img src="/logo.svg" className='h-[40px] w-[80px] md:h-[50px] md:w-[100px]' alt="Logo" />

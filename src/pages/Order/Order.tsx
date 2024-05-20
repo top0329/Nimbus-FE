@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import DefaultLayout from "../../layout/DefaultLayout";
-import toastr from "toastr";
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { RootState } from '../../Redux/Reducers/orderSlice';
-// import CheckBoxWithLabel from "../../components/CheckBoxWithLabel";
+import toastr from "toastr";
+
+import DefaultLayout from "../../layout/DefaultLayout";
 import LabelCheckBox from "../../components/LabelCheckBox";
 import SelectBox from "../../components/SelectBox";
 import LocationBox from "../../components/LocationBox";
@@ -12,6 +12,7 @@ import Summary, { orderSummary } from "./Summary";
 import { data, os, vcgOs } from "../../data";
 import OsSelectBox, { osType } from "../../components/OsSelectBox";
 import OsTypeBox from "../../components/OsTypeBox";
+
 type InstanceType = {
     id: string;
     vcpu_count: number;
@@ -64,7 +65,7 @@ const Order: React.FC = () => {
     const [enableIP6, setEnableIP6] = useState<boolean>(true);
     const [enableBackUps, setEnableBackUps] = useState<boolean>(true);
     const [orderDetail, setDetail] = useState<orderSummary>();
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
         setDetail({
@@ -110,10 +111,12 @@ const Order: React.FC = () => {
             setModalOpen(true);
         }
         else {
-            console.log("errror")
             toastr.error("All Input Required");
         }
     }
+    useEffect(() => {
+        console.log("isModalOpen", isModalOpen); // Should log true when the modal opens
+    }, [isModalOpen]);
 
     return (
         <DefaultLayout>

@@ -12,13 +12,13 @@ const Nodes: React.FC = () => {
   const { isConnected } = useAccount();
   const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
 
-  useEffect(() => {
-    if (!isConnected && !hasShownWarningRef.current) {
-      toastr.warning("Please Connect the Wallet");
-      hasShownWarningRef.current = true; // Mark the warning as shown using the ref
-      navigate("/dashboard");
-    }
-  }, [isConnected, navigate]);
+  // useEffect(() => {
+  //   if (!isConnected && !hasShownWarningRef.current) {
+  //     toastr.warning("Please Connect the Wallet");
+  //     hasShownWarningRef.current = true; // Mark the warning as shown using the ref
+  //     navigate("/dashboard");
+  //   }
+  // }, [isConnected, navigate]);
   return (
     <DefaultLayout>
       <div className="relative flex items-center justify-center py-8 md:py-2 w-full min-h-[600px] box-border rounded-[26px] border-[1px] border-dashed" style={{ borderColor: '#4D8CEC' }}>

@@ -24,7 +24,8 @@
     "toastr": "^2.1.4",
     "uuid": "^9.0.1",
     "viem": "^1.19.3",
-    "wagmi": "^1.4.7"
+    "wagmi": "^1.4.7",
+    "web3": "^4.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.17",

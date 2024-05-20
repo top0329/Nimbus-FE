@@ -5,6 +5,8 @@ import axios from 'axios';
 import { error } from 'toastr';
 import { useAccount } from 'wagmi';
 import toastr from 'toastr';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 const ENDPOINT = "http://localhost:5000";
 interface ModalProps {
     isOpen: boolean;
@@ -74,12 +76,15 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
         // navigate('/overview');
     }
     return (
-        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center" onClick={onClose}>
+        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center">
             <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div className="py-4 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="pb-4 pt-2 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="w-full">
+                        <div className='flex justify-end w-full'>
+                            <FontAwesomeIcon icon={faXmark} className='hover:text-red-600 h-5' onClick={onClose} />
+                        </div>
                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                             <div className="mt-2 font-space-grotesk">
                                 <h1 className='font-press-start-2p dark-theme-color text-[24px] text-center mb-4'>Order Summary</h1>

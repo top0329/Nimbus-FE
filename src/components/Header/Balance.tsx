@@ -1,5 +1,8 @@
+import { useSelector } from "react-redux";
+
 const Balance = () => {
-    const balance = 50;
+    const user = useSelector((state: any) => state.user);
+    const balance = user.balance;
     return (
         <div className="absolute left-[30%] md:relative md:left-0 px-0 md:px-2 z-0">
             <div className="flex flex-row cursor-pointer h-[40px] md:w-[120px] w-0 border:none text-[14px] box-border rounded-full md:border-[1px] items-center justify-center"

@@ -16,13 +16,13 @@ const Profile: React.FC = () => {
   const { address, isConnected } = useAccount();
   const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
 
-  useEffect(() => {
-    if (!isConnected && !hasShownWarningRef.current) {
-      toastr.warning("Please Connect the Wallet");
-      hasShownWarningRef.current = true; // Mark the warning as shown using the ref
-      navigate("/dashboard");
-    }
-  }, [isConnected, navigate]);
+  // useEffect(() => {
+  //   if (!isConnected && !hasShownWarningRef.current) {
+  //     toastr.warning("Please Connect the Wallet");
+  //     hasShownWarningRef.current = true; // Mark the warning as shown using the ref
+  //     navigate("/dashboard");
+  //   }
+  // }, [isConnected, navigate]);
 
   useEffect(() => {
     if (isConnected && !hasShownWarningRef.current) {
