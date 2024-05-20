@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 
 import App from './App';
+import 'toastr/build/toastr.min.css'
 
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 

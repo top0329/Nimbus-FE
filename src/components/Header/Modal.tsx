@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }, 1000);
     }
     return (
-        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center md:mx-0 mx-3">
+        <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center md:mx-0 mx-3" onClick={onClose}>
             <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div className="py-4 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">

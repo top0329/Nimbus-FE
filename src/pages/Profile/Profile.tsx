@@ -1,9 +1,25 @@
 import React from 'react';
+import { useEffect, useRef } from 'react';
+import { useAccount } from 'wagmi';
+import { useNavigate } from 'react-router-dom';
+import toastr from 'toastr';
+
 import DefaultLayout from '../../layout/DefaultLayout';
 import ProfileCard from './ProfileCard';
 
 
 const Profile: React.FC = () => {
+  const navigate = useNavigate();
+  const { isConnected } = useAccount();
+  const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
+
+  useEffect(() => {
+    if (!isConnected && !hasShownWarningRef.current) {
+      toastr.warning("Please Connect the Wallet");
+      hasShownWarningRef.current = true; // Mark the warning as shown using the ref
+      navigate("/dashboard");
+    }
+  }, [isConnected, navigate]);
 
   return (
     <DefaultLayout>

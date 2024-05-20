@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DefaultLayout from "../../layout/DefaultLayout";
+import toastr from "toastr";
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { RootState } from '../../Redux/Reducers/orderSlice';
@@ -69,15 +70,16 @@ const Order: React.FC = () => {
         setDetail({
             instanceId: selectedInstanceId,
             name: hostname,
-            os: osLable,
             locationId: locationId,
-            location: location,
-            summary: selectedInstanceLable,
-            ddosProtection: ddosProtection,
+            osId: osId,
             enableIpv6: enableIP6,
             enableBackUps: enableBackUps,
+            ddosProtection: ddosProtection,
+            os: osLable,
+            location: location,
+            summary: selectedInstanceLable,
         })
-    }, [selectedInstanceId, hostname, selectedInstanceLable, locationId, location, ddosProtection, enableIP6, enableBackUps])
+    }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, ddosProtection, enableIP6, enableBackUps])
 
     const closeModal = () => {
         setModalOpen(false);
@@ -103,7 +105,14 @@ const Order: React.FC = () => {
     }
     const handleOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setModalOpen(true);
+        //validate break point
+        if (selectedInstanceId && locationId && osId && hostname) {
+            setModalOpen(true);
+        }
+        else {
+            console.log("errror")
+            toastr.error("All Input Required");
+        }
     }
 
     return (

@@ -1,36 +1,10 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import toastr from "toastr";
-import axios from 'axios';
+import React, { useState, ReactNode } from 'react';
+
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
-import { useDispatch } from 'react-redux';
-import { addUserInfo } from '../Redux/Reducers/userSlice';
-import { useAccount } from 'wagmi'
 
-const ENDPOINT = 'http://localhost:5000';
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { address, isConnected } = useAccount();
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (isConnected) {
-      //Backend Fetch & Register
-      axios.post(`${ENDPOINT}/${address}`)
-        .then(response => {
-          const payload = {
-            avatar: "./",
-            address,
-            balance: 0
-          };
-          dispatch(addUserInfo(payload));
-        })
-        .catch(error => {
-          toastr.error("Server Disconnected.");
-        })
-
-    }
-  }, [isConnected]);
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useAccount } from 'wagmi'
 import { data } from '../../data';
 
@@ -11,6 +12,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const { address, isConnected } = useAccount();
+  const user = useSelector((state) => state.user);
 
   const location = useLocation();
   const { pathname } = location;

@@ -30,11 +30,9 @@ const OsSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOs
         const selectedId = e.target.options[e.target.selectedIndex].getAttribute('data-label');
         setSelectedOption(e.target.value);
         setOsId(selectedId);
-        console.log(selectedId);
         const osData = getOsById(os, osType);
         const osLabel = getNameById(selectedId, osData);
         setOsLable(osLabel);
-        console.log("======>", selectedId, osLabel);
     };
 
     return (
