@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
-import { RootState } from '../../Redux/Reducers/orderSlice';
 import toastr from "toastr";
+import { useParams } from "react-router-dom";
 
+import { RootState } from '../../Redux/Reducers/orderSlice';
 import DefaultLayout from "../../layout/DefaultLayout";
 import LabelCheckBox from "../../components/LabelCheckBox";
 import SelectBox from "../../components/SelectBox";
@@ -11,6 +10,7 @@ import LocationBox from "../../components/LocationBox";
 import Summary, { orderSummary } from "./Summary";
 import { data, os, vcgOs } from "../../data";
 import OsSelectBox, { osType } from "../../components/OsSelectBox";
+import { optionType } from "../../components/SelectBox";
 import OsTypeBox from "../../components/OsTypeBox";
 
 type InstanceType = {
@@ -42,11 +42,7 @@ function getAssetImage(id: string | undefined) {
     const asset = assets.find(asset => asset.id === id);
     return asset ? asset.img : 'Asset not found';
 }
-interface optionType {
-    value: string;
-    label: string;
-    locations: string[];
-}
+
 const Order: React.FC = () => {
 
     const [selectedInstanceId, setInstanceId] = useState<string>("");
@@ -61,6 +57,7 @@ const Order: React.FC = () => {
     const [selectedInstanceLable, setInstanceLable] = useState<string | null>("");
     const [locationId, setLocationId] = useState<string>("");
     const [location, setLocation] = useState<string>("");
+    const [monthlyCost, setMonthlyCost] = useState<number>(0);
     const [ddosProtection, setDdosProtection] = useState<boolean>(true);
     const [enableIP6, setEnableIP6] = useState<boolean>(true);
     const [enableBackUps, setEnableBackUps] = useState<boolean>(true);
@@ -73,6 +70,7 @@ const Order: React.FC = () => {
             name: hostname,
             locationId: locationId,
             osId: osId,
+            monthlyCost: monthlyCost,
             enableIpv6: enableIP6,
             enableBackUps: enableBackUps,
             ddosProtection: ddosProtection,
@@ -80,7 +78,7 @@ const Order: React.FC = () => {
             location: location,
             summary: selectedInstanceLable,
         })
-    }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, ddosProtection, enableIP6, enableBackUps])
+    }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, monthlyCost, ddosProtection, enableIP6, enableBackUps])
 
     const closeModal = () => {
         setModalOpen(false);
@@ -99,7 +97,8 @@ const Order: React.FC = () => {
             let detail = {
                 value: item.id,
                 label: `NVIDIA ${instanceType} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
-                locations: item.locations
+                locations: item.locations,
+                monthlyCost: item.monthly_cost
             }
             options.push(detail);
         })
@@ -153,6 +152,7 @@ const Order: React.FC = () => {
                         options={options}
                         setLocationList={setLocationList}
                         setInstanceId={setInstanceId}
+                        setMonthlyCost={setMonthlyCost}
                         setInstanceLable={setInstanceLable}
                     />
                     <LocationBox locations={locationList} setLocationId={setLocationId} setLocation={setLocation} />

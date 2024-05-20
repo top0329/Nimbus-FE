@@ -20,13 +20,17 @@ const userSlice = createSlice({
             const { address, avatar, balance } = action.payload;
             return { ...state, address, avatar, balance };
         },
-        updateUserInfo: (state, action: PayloadAction<{ avatar: string; balance: number }>) => {
-            const { avatar, balance } = action.payload;
-            return { ...state, avatar, balance };
+        updateBalance: (state, action: PayloadAction<{ balance: number }>) => {
+            const { balance } = action.payload;
+            return { ...state, balance };
+        },
+        updateAvatar: (state, action: PayloadAction<{ avatar: string }>) => {
+            const { avatar } = action.payload;
+            return { ...state, avatar };
         },
     },
 });
 
-export const { addUserInfo, updateUserInfo } = userSlice.actions;
+export const { addUserInfo, updateBalance, updateAvatar } = userSlice.actions;
 
 export default userSlice.reducer;

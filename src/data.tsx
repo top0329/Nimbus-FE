@@ -874,7 +874,7 @@ const vcgOs = [
 
 const locationData = [
     { code: "us", name: "Chicago", id: "ord" },
-    { code: "us", name: "EWR", id: "ewr" },
+    { code: "us", name: "New Jersey", id: "ewr" },
     { code: "us", name: "Silicon Valley", id: "sjc" },
     { code: "gb", name: "London", id: "lhr" },
     { code: "de", name: "Frankfurt", id: "fra" },

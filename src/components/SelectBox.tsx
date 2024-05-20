@@ -6,22 +6,26 @@ interface SelectBoxProps {
     setLocationList: (locations: string[]) => void;
     setInstanceId: (id: string) => void;
     setInstanceLable: (id: string | null) => void;
+    setMonthlyCost: (cost: number) => void;
 }
-interface optionType {
+export interface optionType {
     value: string;
     label: string;
     locations: string[];
+    monthlyCost: number;
 }
-const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList, setInstanceId, setInstanceLable }) => {
+const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList, setInstanceId, setInstanceLable, setMonthlyCost }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+        const selectedMonthlyCost: any = e.target.options[e.target.selectedIndex].getAttribute('data-cost');
         setSelectedOption(e.target.value);
         setLocationList(options[e.target.selectedIndex].locations)
         setInstanceId(e.target.value);
         setInstanceLable(selectedLabel);
+        setMonthlyCost(parseInt(selectedMonthlyCost));
     };
 
     return (
@@ -34,7 +38,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
                     {options.map((option, index) => (
-                        <option key={index} data-label={option.label} value={option.value} className='text-[11px] md:text-[16px]'>
+                        <option key={index} data-label={option.label} data-cost={option.monthlyCost} value={option.value} className='text-[11px] md:text-[16px]'>
                             {option.label}
                         </option>
                     ))}

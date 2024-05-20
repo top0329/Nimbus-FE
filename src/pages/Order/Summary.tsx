@@ -7,6 +7,8 @@ import { useAccount } from 'wagmi';
 import toastr from 'toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+
 const ENDPOINT = "http://localhost:5000";
 interface ModalProps {
     isOpen: boolean;
@@ -19,6 +21,7 @@ export interface orderSummary {
     name: string;
     os: string | null;
     osId: number;
+    monthlyCost: number;
     location: string;
     locationId: string;
     summary: string | null;
@@ -33,6 +36,7 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
     const name = orderDetail?.name.replace(/[^a-zA-Z\-]/g, '');
     const instanceId = orderDetail?.instanceId;
     const osId = orderDetail?.osId;
+    const monthlyCost = orderDetail?.monthlyCost;
     const locationId = orderDetail?.locationId;
     const ddosProtection = orderDetail?.ddosProtection;
     const enableBackUps = orderDetail?.enableBackUps;
@@ -46,34 +50,47 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
     const [status, setStatus] = useState<string>("");
     //wallet
     const { address } = useAccount();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state: any) => state.user);
+
     const handleSubmit = async () => {
-        setStatus("loading");
-        //Backend logic
 
-        const payload = {
-            name,
-            instanceId,
-            locationId,
-            osId,
-            ddosProtection,
-            enableBackUps,
-            enableIpv6
-        }
-        await axios.post(`${ENDPOINT}/api/order/${address}`, payload, {
-            headers: {
-
-                'Content-type': "application/json"
-            },
-        })
-            .then((response) => {
-                setStatus("");
+        if (monthlyCost) {
+            if (userInfo.balance < monthlyCost) {
+                toastr.error("You balance is not enough. Please confirm the balance.")
                 onClose();
-                console.log("====>order Result", response.data);
-            })
-            .catch((error) => {
-                toastr.error("Server Error");
-            });
-        // navigate('/overview');
+            }
+            else {
+                setStatus("loading");
+                //Backend logic
+
+                const payload = {
+                    name,
+                    instanceId,
+                    locationId,
+                    osId,
+                    ddosProtection,
+                    enableBackUps,
+                    enableIpv6
+                }
+                await axios.post(`${ENDPOINT}/api/order/${address}`, payload, {
+                    headers: {
+
+                        'Content-type': "application/json"
+                    },
+                })
+                    .then((response) => {
+                        setStatus("");
+                        onClose();
+                        toastr.success("Succefully Ordered!")
+                        navigate('/overview');
+                    })
+                    .catch((error) => {
+                        toastr.error("Server Error");
+                    });
+            }
+        }
     }
     return (
         <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center">
@@ -152,7 +169,7 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
                 <div className='w-full px-6 py-2'>
                     <div className='w-full py-2 rounded-[10px] mb-8 text-center' style={{ backgroundColor: "#D9E4F7" }}>
                         <h3 className='dark-theme-color text-[13px]'>Total cost</h3>
-                        <h1 className='light-theme-color font-bold text-[18px]'>$1050/month</h1>
+                        <h1 className='light-theme-color font-bold text-[18px]'>${monthlyCost} / Month</h1>
                     </div>
                     <button type="button" className="w-full submitBtn rounded-[10px] py-3 text-4 bg-light-theme-color  text-white" onClick={handleSubmit}>
                         < span className="ml-2 text-[15px] md:text-[18px]" >{status === "loading" ? <Loading /> : "Purchase"}</span >
