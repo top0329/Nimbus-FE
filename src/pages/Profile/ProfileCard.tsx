@@ -37,9 +37,12 @@ const ProfileCard: React.FC = () => {
         <div className='z-0 flex h-full w-full items-center justify-start flex-col py-[40px] pt-[30px] md:pt-[70px]'>
             <section className='flex flex-col gap-10 w-full pb-[40px]'>
                 <h1 className='font-press-start-2p light-theme-color md:text-[20px] text-[18px]'>My Balance</h1>
-                <div className='flex flex-col md:text-left text-center md:w-[300px] w-[250px] px-6 py-4 font-space-grotesk gap-4 border-2 rounded-[10px]' style={{ borderColor: "#4D8CEC" }}>
-                    <h2 className='dark-theme-color md:text-[20px] text-[18px]'>Current Balance</h2>
-                    <h1 className='light-theme-color lg:text-[24px] xl:text-[36px] text-[21px]'>${currentBalance}</h1>
+                <div className='flex flex-row justify-between text-left md:w-[350px] w-[280px] px-4 md:px-6 py-4 font-space-grotesk gap-4 border-2 rounded-[10px]' style={{ borderColor: "#4D8CEC" }}>
+                    <div className='flex flex-col justify-between gap-4'>
+                        <h2 className='dark-theme-color md:text-[20px] text-[18px]'>Current Balance</h2>
+                        <h1 className='light-theme-color lg:text-[24px] xl:text-[36px] text-[21px]'>${currentBalance}</h1>
+                    </div>
+                    <img src="/crown.png" alt="crown" className={`h-[60px] ${currentBalance > 0 ? 'block' : 'hidden'}`} />
                 </div>
             </section>
             <section className='flex flex-col gap-10 w-full pb-[40px]'>
