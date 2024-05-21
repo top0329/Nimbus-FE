@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import useScreenSize from '../../hooks/useScreenSize';
 import { useNavigate } from 'react-router-dom';
+import { locationData } from '../../data';
 
 const ProfileCard: React.FC = () => {
     const user = useSelector((state: any) => state.user);
@@ -52,7 +53,7 @@ const ProfileCard: React.FC = () => {
                                     <div className='flex flex-row py-2 px-2'>
                                         <h1 className='dark-theme-color text-[18px] font-bold'>Region:&nbsp;</h1>
                                         <div className='flex flex-row items-center justify-center gap-2'>
-                                            <img src={`https://flagcdn.com/w40/us.png`} alt="us" className={`rounded-full overflow-hidden w-8 h-8`} />
+                                            <img src={`https://flagcdn.com/w40/${(locationData.find(loc => loc.id === node?.region))?.code}.png`} alt="us" className={`rounded-full overflow-hidden w-8 h-8`} />
                                             {node.locationDetail}
                                         </div>
                                     </div>
@@ -84,7 +85,7 @@ const ProfileCard: React.FC = () => {
                                             <th>Status</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='text-center justify-center text-[15px] dark-theme-color'>
+                                    <tbody className='text-center justify-start text-[15px] dark-theme-color'>
                                         {nodesData.length > 0 ? (
                                             nodesData.map((node: any, index: number) => (
                                                 <tr key={index} className='h-[80px] customTr' data-val={node.orderId} onClick={handleClick}>
@@ -92,9 +93,11 @@ const ProfileCard: React.FC = () => {
                                                     <td>{node.specification}</td>
                                                     <td>{node.os}</td>
                                                     <td>
-                                                        <div className='flex flex-row items-center justify-center gap-2'>
-                                                            <img src={`https://flagcdn.com/w40/us.png`} alt="us" className={`rounded-full overflow-hidden w-8 h-8`} />
-                                                            {node.locationDetail}
+                                                        <div className='flex pl-[25%] flex-col lg:flex-row items-center justify-center gap-2'>
+                                                            <img className={`rounded-full overflow-hidden w-8 h-8`} src={`https://flagcdn.com/w40/${(locationData.find(loc => loc.id === node?.region))?.code}.png`} alt="us" />
+                                                            <h1 className='text-left flex-1'>
+                                                                {node.locationDetail}
+                                                            </h1>
                                                         </div>
                                                     </td>
                                                     <td>{node.status}</td>
