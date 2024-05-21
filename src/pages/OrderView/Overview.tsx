@@ -6,7 +6,8 @@ import { faEye, faEyeSlash, faCopy, faAsterisk } from '@fortawesome/free-solid-s
 import { useParams } from "react-router-dom";
 import { useAccount } from "wagmi";
 
-const ENDPOINT = 'http://localhost:5000';
+// const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'http://149.248.9.67:5000';
 
 const Overview: React.FC = () => {
     const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
