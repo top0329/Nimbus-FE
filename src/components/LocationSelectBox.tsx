@@ -16,7 +16,6 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
     const locations = useSelector((state: any) => state.locations);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Location | null>(null);
-    console.log("locations=========>", locations);
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addLocations } from '../Redux/Reducers/locationSlice';
 import { useNavigate } from 'react-router-dom';
-import { locationData } from '../data';
+import { data, locationData } from '../data';
 interface SpecificationBoxProps {
     heading: string,
     setInstanceId: (id: string) => void;
     setInstanceLable: (id: string | null) => void;
     setMonthlyCost: (cost: number) => void;
+    instanceType: string;
 }
 export interface optionType {
     value: string;
@@ -15,12 +16,27 @@ export interface optionType {
     locations: string[];
     monthlyCost: number;
 }
-const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanceId, setInstanceLable, setMonthlyCost }) => {
+const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanceId, setInstanceLable, setMonthlyCost, instanceType }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState<string | null>("");
-    const specs = useSelector((state: any) => state.specs);
+
+    const specificatoinDetail = data.assetsDetail;
+    const specifications = specificatoinDetail[instanceType];
+
+    let specs: any = [];
+    specifications.map((item: any) => {
+        let detail = {
+            value: item.id,
+            label: `NVIDIA ${instanceType} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+            locations: item.locations,
+            monthlyCost: item.monthly_cost
+        }
+        specs.push(detail);
+    })
+
+
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');
@@ -36,7 +52,6 @@ const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanc
     useEffect(() => {
         if (specs.length != 0) {
             let locations = locationData.filter(location => specs[0].locations.includes(location.id));
-            console.log("locations", locations);
             setSelectedOption(specs[0].label);
             setInstanceId(specs[0].value);
             setInstanceLable(specs[0].label);

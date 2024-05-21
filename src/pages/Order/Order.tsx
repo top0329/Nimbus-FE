@@ -62,7 +62,6 @@ const Order: React.FC = () => {
             location: location,
             summary: selectedInstanceLable,
         })
-        console.log("orderDetail", orderDetail);
     }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, monthlyCost, ddosProtection, enableIP6, enableBackUps])
 
     const closeModal = () => {
@@ -115,6 +114,7 @@ const Order: React.FC = () => {
                         setInstanceId={setInstanceId}
                         setMonthlyCost={setMonthlyCost}
                         setInstanceLable={setInstanceLable}
+                        instanceType = {instanceType}
                     />
                     <LocationSelectBox setLocationId={setLocationId} setLocation={setLocation} />
                     <OsTypeSelectBox

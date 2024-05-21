@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import toastr from "toastr";
 import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,7 +29,7 @@ const Overview: React.FC = () => {
             setShowMessage(true);
             setTimeout(() => setShowMessage(false), 500); // Hide the message after 1.5 seconds
         } catch (err) {
-            console.error('Failed to copy text: ', err);
+            toastr.error("Something went wrong...")
         }
     };
 
