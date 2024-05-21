@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import TopUp from './TopUp';
+import TopUpBtn from './TopUpBtn';
 import Balance from './Balance';
 
 const Header = (props: {
@@ -16,7 +16,7 @@ const Header = (props: {
         </NavLink>
         <div className='flex flex-row items-center md:gap-[20px] lg:pr-[30px] xl:pr-[30px] 2xl:pr-0'>
           <div className="flex items-center">
-            <TopUp />
+            <TopUpBtn />
             <Balance />
             <w3m-button />
           </div>

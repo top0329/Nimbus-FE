@@ -29,7 +29,7 @@ async function fetchUsdToEthRate(): Promise<number> {
 function calculateEthFromUsd(usdAmount: number, usdToEthRate: number): number {
     return usdAmount / usdToEthRate;
 }
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
     const [depositAmount, setDepositAmount] = useState<string>("");
     const [status, setStatus] = useState<string>("");
@@ -124,4 +124,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     );
 };
 
-export default Modal;
+export default TopUpModal;

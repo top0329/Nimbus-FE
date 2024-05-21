@@ -32,7 +32,7 @@ export interface orderSummary {
     enableBackUps: boolean;
 }
 
-const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
+const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
 
     //meta detail
     const name = orderDetail?.name.replace(/[^a-zA-Z\-]/g, '');
@@ -188,4 +188,4 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
     );
 };
 
-export default Summary;
+export default SummaryModal;

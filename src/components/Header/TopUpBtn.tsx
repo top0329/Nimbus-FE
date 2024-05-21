@@ -1,7 +1,7 @@
-import Modal from "./Modal";
+import TopUpModal from "./TopUpModal";
 import { useState, useEffect } from 'react';
 
-const TopUp = () => {
+const TopUpBtn = () => {
     const [isModalOpen, setModalOpen] = useState(false);
     const closeModal = () => {
         setModalOpen(false);
@@ -17,10 +17,10 @@ const TopUp = () => {
                 < img src="/topUp.svg" alt="Icon" /> {/* Use the SVG icon here */}
                 < span className="ml-2 text-[15px] md:text-[18px] md:block hidden" style={{ color: "#4D8CEC" }} >Top Up</span > {/* Add your button text here */}
             </button >
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
+            <TopUpModal isOpen={isModalOpen} onClose={closeModal} />
         </div>
 
     );
 };
 
-export default TopUp;
+export default TopUpBtn;

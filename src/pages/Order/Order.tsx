@@ -6,7 +6,7 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import LabelCheckBox from "../../components/LabelCheckBox";
 import SelectBox from "../../components/SelectBox";
 import LocationSelectBox from "../../components/LocationSelectBox";
-import Summary, { orderSummary } from "./Summary";
+import SummaryModal, { orderSummary } from "./SummaryModal";
 import { data, os, vcgOs } from "../../data";
 import OsVersionSelectBox, { osType } from "../../components/OsVersionSelectBox";
 import { optionType } from "../../components/SelectBox";
@@ -173,7 +173,7 @@ const Order: React.FC = () => {
                     <button onClick={handleOrder} className='self-end customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk md:w-[30%]' style={{ backgroundColor: "#4D8CEC" }}>
                         Proceed Order
                     </button>
-                    <Summary isOpen={isModalOpen} onClose={closeModal} orderDetail={orderDetail} />
+                    <SummaryModal isOpen={isModalOpen} onClose={closeModal} orderDetail={orderDetail} />
                 </div>
             </div>
         </DefaultLayout>
