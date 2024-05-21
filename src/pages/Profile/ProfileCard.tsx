@@ -39,26 +39,26 @@ const ProfileCard: React.FC = () => {
                             nodesData.length > 0 ? (nodesData.map((node: any, index: number) => (
                                 <div key={index} className='flex flex-col font-space-grotesk border border-dashed rounded-[10px]' style={{ borderColor: '#4D8CEC' }}>
                                     <div className='flex flex-row py-2  px-2' >
-                                        <h1 className='dark-theme-color text-[18px] font-bold'>Name:&nbsp;</h1>
-                                        <h2 className='dark-theme-color text-[15px]'>"{node.hostname}"</h2>
+                                        <h1 className='dark-theme-color text-[18px] font-bold w-[150px]'>Name:&nbsp;</h1>
+                                        <h2 className='dark-theme-color text-[15px]'>{node.hostname}</h2>
                                     </div>
                                     <div className='flex flex-row py-2 px-2'>
-                                        <h1 className='dark-theme-color text-[18px] font-bold'>Specification:&nbsp;</h1>
-                                        <h2 className='dark-theme-color text-[15px]'>{node.specification}</h2>
+                                        <h1 className='dark-theme-color text-[18px] font-bold w-[250px]' >Specification:&nbsp;</h1>
+                                        <h2 className='dark-theme-color text-[14px]'>{node.specification}</h2>
                                     </div>
                                     <div className='flex flex-row py-2 px-2'>
-                                        <h1 className='dark-theme-color text-[18px] font-bold'>Type:&nbsp;</h1>
-                                        <h2 className='dark-theme-color text-[15px]'>{node.type}</h2>
+                                        <h1 className='dark-theme-color text-[18px] font-bold w-[150px]'>Os:&nbsp;</h1>
+                                        <h2 className='dark-theme-color text-[15px]'>{node.os}</h2>
                                     </div>
                                     <div className='flex flex-row py-2 px-2'>
-                                        <h1 className='dark-theme-color text-[18px] font-bold'>Region:&nbsp;</h1>
+                                        <h1 className='dark-theme-color text-[18px] font-bold w-[150px]'>Region:&nbsp;</h1>
                                         <div className='flex flex-row items-center justify-center gap-2'>
                                             <img src={`https://flagcdn.com/w40/${(locationData.find(loc => loc.id === node?.region))?.code}.png`} alt="us" className={`rounded-full overflow-hidden w-8 h-8`} />
                                             {node.locationDetail}
                                         </div>
                                     </div>
                                     <div className='flex flex-row py-2 px-2'>
-                                        <h1 className='dark-theme-color text-[18px] font-bold'>Status:&nbsp;</h1>
+                                        <h1 className='dark-theme-color text-[18px] font-bold w-[150px]'>Status:&nbsp;</h1>
                                         <h2 className='dark-theme-color text-[15px]'>{node.status}</h2>
                                     </div>
                                 </div>
