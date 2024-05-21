@@ -22,7 +22,7 @@ function getNameById(id: number, osData: osType[]) {
     const osItem = osData.find(os => os.id == id);
     return osItem ? osItem.name : 'OS not found';
 }
-const OsSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOsId, setOsLable }) => {
+const OsVersionSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOsId, setOsLable }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
@@ -60,4 +60,4 @@ const OsSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOs
     );
 };
 
-export default OsSelectBox;
+export default OsVersionSelectBox;

@@ -11,7 +11,7 @@ const networkData: Nework[] = [
 
 ];
 
-const NetworkSelector: React.FC = () => {
+const NetworkSelectBox: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Nework>({ svgPath: "/ethereum-logo.svg", networkName: "Ethereum" });
 
@@ -51,4 +51,4 @@ const NetworkSelector: React.FC = () => {
     );
 };
 
-export default NetworkSelector;
+export default NetworkSelectBox;

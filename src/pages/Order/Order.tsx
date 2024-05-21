@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import toastr from "toastr";
 import { useParams } from "react-router-dom";
 
-import { RootState } from '../../Redux/Reducers/orderSlice';
 import DefaultLayout from "../../layout/DefaultLayout";
 import LabelCheckBox from "../../components/LabelCheckBox";
 import SelectBox from "../../components/SelectBox";
-import LocationBox from "../../components/LocationBox";
+import LocationSelectBox from "../../components/LocationSelectBox";
 import Summary, { orderSummary } from "./Summary";
 import { data, os, vcgOs } from "../../data";
-import OsSelectBox, { osType } from "../../components/OsSelectBox";
+import OsVersionSelectBox, { osType } from "../../components/OsVersionSelectBox";
 import { optionType } from "../../components/SelectBox";
-import OsTypeBox from "../../components/OsTypeBox";
+import OsTypeSelectBox from "../../components/OsTypeSelectBox";
 
 type InstanceType = {
     id: string;
@@ -155,14 +154,14 @@ const Order: React.FC = () => {
                         setMonthlyCost={setMonthlyCost}
                         setInstanceLable={setInstanceLable}
                     />
-                    <LocationBox locations={locationList} setLocationId={setLocationId} setLocation={setLocation} />
-                    <OsTypeBox
+                    <LocationSelectBox locations={locationList} setLocationId={setLocationId} setLocation={setLocation} />
+                    <OsTypeSelectBox
                         heading="Select the operating System"
                         options={vcgOs}
                         setOsType={setOsType}
                         setOsList={setOsList}
                     />
-                    <OsSelectBox
+                    <OsVersionSelectBox
                         heading="Select the operating System"
                         osType={osType}
                         options={osList}

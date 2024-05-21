@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@web3modal/wagmi": "^3.3.2",
     "axios": "^1.6.8",
+    "identicon.js": "^2.3.3",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
@@ -28,6 +29,7 @@
     "web3": "^4.8.0"
   },
   "devDependencies": {
+    "@types/identicon.js": "^2.3.4",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "@types/toastr": "^2.1.43",

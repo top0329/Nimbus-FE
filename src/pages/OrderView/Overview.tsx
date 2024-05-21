@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faCopy, faAsterisk } from '@fortawesome/free-solid-svg-icons';
-const Overview: React.FC = () => {
+import { useParams } from "react-router-dom";
+import { useAccount } from "wagmi";
 
-    const password = "4&*#905";
+const ENDPOINT = 'http://localhost:5000';
+
+const Overview: React.FC = () => {
+    const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
+    const orderId = useParams<{ id: string }>();
     const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [node, setNode] = useState<any>();
+
+    const { isConnected, address } = useAccount();
     // Function to toggle the boolean state
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
@@ -21,24 +30,41 @@ const Overview: React.FC = () => {
             console.error('Failed to copy text: ', err);
         }
     };
+
+    useEffect(() => {
+        if (isConnected && !hasShownWarningRef.current) {
+            //Backend Fetch & Register
+            axios.get(`${ENDPOINT}/api/order/${address}?orderId=${orderId?.id}`)
+                .then(response => {
+                    console.log("response=========>", response.data);
+                    setNode(response.data);
+
+                })
+                .catch(error => {
+                    toastr.error("Server Disconnected.");
+                })
+        }
+        hasShownWarningRef.current = true;
+    }, [isConnected]);
+
     return (
         <DefaultLayout>
             <div className="flex flex-col w-full">
                 <div className="flex flex-row pb-10 gap-[30px]">
                     <div className="border-[1px] border-dashed rounded-[12px] p-2 grow-0">
-                        <img src="./unjs_uncrypto.svg" alt="icon" className="h-[50px] w-[50px]" />
+                        <img src="/unjs_uncrypto.svg" alt="icon" className="h-[50px] w-[50px]" />
                     </div>
                     <div className="flex flex-col justify-between">
-                        <h1 className="text-[20px] font-space-grotesk light-theme-color">Test 1350</h1>
+                        <h1 className="text-[20px] font-space-grotesk light-theme-color">{node?.hostname}</h1>
                         <div className="flex flex-col md:flex-row-reverse">
                             <div className="flex flex-row">
                                 <h2 className="md:text-[20px] md:block hidden text-[16px] font-space-grotesk light-theme-color">&nbsp;&nbsp;//&nbsp;&nbsp;</h2>
-                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">Created 15 days ago</h2>
+                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">Created {(Math.floor((new Date().setHours(0, 0, 0, 0) - new Date(node?.startDate).setHours(0, 0, 0, 0)) / (1000 * 60 * 60 * 24)))} days ago</h2>
                             </div>
                             <div className="flex flex-row">
-                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">149.248.52.184</h2>
+                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">{node?.main_ip}</h2>
                                 <h2 className="md:text-[20px] text-[16px] font-space-grotesk light-theme-color">&nbsp;&nbsp;//&nbsp;&nbsp;</h2>
-                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">Toronto</h2>
+                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">{node?.locationDetail}</h2>
                             </div>
                         </div>
                     </div>
@@ -55,15 +81,15 @@ const Overview: React.FC = () => {
                         </div>
                         <div className="flex flex-row text-left gap-2">
                             <h3 className="dark-theme-color text-[20px] w-[50%]">Location:</h3>
-                            <h3 className="light-theme-color text-[20px]">Toronto</h3>
+                            <h3 className="light-theme-color text-[20px]">{node?.locationDetail}</h3>
                         </div>
                         <div className="flex flex-row text-left gap-2">
                             <h3 className="dark-theme-color text-[20px] w-[50%]">IP Address:</h3>
-                            <h3 className="light-theme-color text-[20px]">149.248.52.184</h3>
+                            <h3 className="light-theme-color text-[20px]">{node?.main_ip}</h3>
                         </div>
                         <div className="flex flex-row text-left gap-2">
                             <h3 className="dark-theme-color text-[20px] w-[50%]">Username:</h3>
-                            <h3 className="light-theme-color text-[20px]">root</h3>
+                            <h3 className="light-theme-color text-[20px]">{node?.user_scheme}</h3>
                         </div>
                         <div className="flex flex-row text-left items-center gap-2">
                             <h3 className="dark-theme-color text-[20px] w-[50%]">Password:</h3>
@@ -71,7 +97,7 @@ const Overview: React.FC = () => {
                                 <div className="w-[100px] overflow-hidden mr-2">
                                     {
                                         isVisible ?
-                                            (<h2 className="light-theme-color text-[16px]">{password.length > 7 ? `${password.substring(0, 7)}...` : password}</h2>) : (
+                                            (<h2 className="light-theme-color text-[16px]">{node?.default_password.length > 7 ? `${node?.default_password.substring(0, 7)}...` : node?.default_password}</h2>) : (
                                                 <>
                                                     <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
                                                     <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
@@ -92,7 +118,7 @@ const Overview: React.FC = () => {
                                             <FontAwesomeIcon onClick={toggleVisibility} icon={faEye} className="light-theme-color cursor-pointer" />
                                     }
                                     <div className="relative">
-                                        <FontAwesomeIcon icon={faCopy} className="light-theme-color cursor-pointer" onClick={() => copyToClipboard(password)} />
+                                        <FontAwesomeIcon icon={faCopy} className="light-theme-color cursor-pointer" onClick={() => copyToClipboard(node?.default_password)} />
                                         {showMessage && (
                                             <div className="absolute bottom-[25px] right-[10px] w-[80px] light-theme-color border border-dashed shadow-md p-1 rounded mt-0 transition-opacity">
                                                 copied !

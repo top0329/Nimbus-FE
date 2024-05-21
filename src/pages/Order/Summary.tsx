@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import { error } from 'toastr';
 import { useAccount } from 'wagmi';
 import toastr from 'toastr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { addOrder } from '../../Redux/Reducers/orderSlice';
 
 const ENDPOINT = "http://localhost:5000";
 interface ModalProps {
@@ -64,15 +66,20 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
             else {
                 setStatus("loading");
                 //Backend logic
-
+                let orderId = uuidv4();
                 const payload = {
+                    orderId,
                     name,
                     instanceId,
                     locationId,
+                    location,
                     osId,
                     ddosProtection,
                     enableBackUps,
-                    enableIpv6
+                    enableIpv6,
+                    summary,
+                    os,
+                    monthlyCost
                 }
                 await axios.post(`${ENDPOINT}/api/order/${address}`, payload, {
                     headers: {
@@ -81,10 +88,11 @@ const Summary: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
                     },
                 })
                     .then((response) => {
+                        dispatch(addOrder(response.data));
                         setStatus("");
                         onClose();
                         toastr.success("Succefully Ordered!")
-                        navigate('/overview');
+                        navigate(`/overview/${orderId}`);
                     })
                     .catch((error) => {
                         toastr.error("Server Error");

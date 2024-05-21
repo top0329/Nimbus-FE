@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAccount } from 'wagmi'
 import { data } from '../../data';
+import Identicon from "identicon.js";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -81,6 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       document.body.classList.add('overflow-x-hidden');
     }
   }, [sidebarOpen]);
+
   return (
     <aside
       ref={sidebar}
@@ -148,7 +150,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <div className='flex flex-row items-center justify-between'>
             {
               isConnected ?
-                (<img src={`${user.avatar ? 'user.avatar' : '/Account.ico'}`} alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
+                (
+                  <img src={`data:image/png;base64,${new Identicon(
+                    (address ? address : ''),
+                    40
+                  ).toString()}`} alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />
+                )
                 :
                 (<img src="/Account.ico" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
             }

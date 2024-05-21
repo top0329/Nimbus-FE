@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toastr from 'toastr';
-import NetworkSelector from '../NetworkSelector';
+import NetworkSelectBox from '../NetworkSelectBox';
 import DepositSelector from '../DepositSelector';
 import { Loading } from '../Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -97,7 +97,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         </div>
                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                             <div className="mt-2">
-                                <NetworkSelector />
+                                <NetworkSelectBox />
 
                                 <div className="relative font-space-grotesk w-full">
                                     < h1 className='text-[16px] dark-theme-color py-3' >Total Amount in USDT</h1 >

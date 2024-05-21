@@ -5,6 +5,7 @@ import axios from 'axios';
 import toastr from 'toastr';
 
 import { addUserInfo } from '../Redux/Reducers/userSlice';
+// import {addin}
 
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
@@ -17,8 +18,8 @@ const ENDPOINT = 'http://localhost:5000';
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
-  const { isConnected, address } = useAccount();
   const dispatch = useDispatch();
+  const { isConnected, address } = useAccount();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,17 +27,20 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       //Backend Fetch & Register
       axios.post(`${ENDPOINT}/api/user/${address}`)
         .then(response => {
-          const { avatar, balance, wallet, nodes } = response.data.user;
+          const { avatar, balance, wallet } = response.data.user;
+          console.log("Succefully UserInfo");
           dispatch(addUserInfo(
             {
               address: wallet,
               avatar,
               balance
             }
-          ))
+          ));
+          hasShownWarningRef.current = true; // Mark the warning as shown using the ref
         })
-        .catch(error => {
+        .catch(err => {
           toastr.error("Server Disconnected.");
+          navigate("/dashboard");
         })
     }
     // if (!isConnected && !hasShownWarningRef.current) {
@@ -44,7 +48,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     //   hasShownWarningRef.current = true; // Mark the warning as shown using the ref
     //   navigate("/dashboard");
     // }
-  }, [isConnected, navigate]);
+  }, [isConnected]);
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">

@@ -7,7 +7,7 @@ interface Location {
     name: string;
     id: string;
 }
-interface LocationBoxProps {
+interface LocationSelectBoxProps {
     locations: string[];
     setLocationId: (id: string) => void;
     setLocation: (id: string) => void;
@@ -16,7 +16,7 @@ export function filterLocations(locationData: Location[], locations: string[]) {
     // Filter the locationData based on the locations array
     return locationData.filter(location => locations.includes(location.id));
 }
-const LocationBox: React.FC<LocationBoxProps> = ({ locations, setLocationId, setLocation }) => {
+const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ locations, setLocationId, setLocation }) => {
     const locationList: Location[] = filterLocations(locationData, locations);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Location | null>(null);
@@ -61,4 +61,4 @@ const LocationBox: React.FC<LocationBoxProps> = ({ locations, setLocationId, set
     );
 };
 
-export default LocationBox;
+export default LocationSelectBox;

@@ -127,6 +127,13 @@
   transform: scale(1.5); /* Larger increase in size for active state */
   transition: all 0.3s ease; /* Smooth transition */
 }
+.customTr{
+  cursor: pointer;
+}
+.customTr:hover{
+  background-color: #4D8CECA0;
+  color: white;
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);

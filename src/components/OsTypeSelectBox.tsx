@@ -17,7 +17,7 @@ function getOsById(data: Record<string, osType[]>, id: string): osType[] {
     const osList = data[id];
     return osList; // Return the first instance or undefined
 }
-const OsTypeBox: React.FC<SelectBoxProps> = ({ heading, options, setOsType, setOsList }) => {
+const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, options, setOsType, setOsList }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
@@ -53,4 +53,4 @@ const OsTypeBox: React.FC<SelectBoxProps> = ({ heading, options, setOsType, setO
     );
 };
 
-export default OsTypeBox;
+export default OsTypeSelectBox;
