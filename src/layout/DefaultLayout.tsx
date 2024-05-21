@@ -28,7 +28,6 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       axios.post(`${ENDPOINT}/api/user/${address}`)
         .then(response => {
           const { avatar, balance, wallet } = response.data.user;
-          console.log("Succefully UserInfo");
           dispatch(addUserInfo(
             {
               address: wallet,

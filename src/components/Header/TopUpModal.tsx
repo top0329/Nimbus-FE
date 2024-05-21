@@ -39,20 +39,16 @@ const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
     const userInfo = useSelector((state: any) => state.user);
 
-    // Get the balance in Wei
     const handleSubmit = async () => {
         setStatus("loading");
         const usdToEthRate = await fetchUsdToEthRate();
         let ethAmount = calculateEthFromUsd(parseInt(depositAmount), usdToEthRate);
         const weiAmount = BigInt(Math.floor(ethAmount * 1e18));
-        // const web3 = new Web3(`https://mainnet.infura.io/v3/${API_KEY}`);
-        // const web3 = new Web3(new Web3.providers.HttpProvider(`https://sepolia.infura.io/v3/${API_KEY}`));
         const transaction = {
             to: OWNERADDRESS,
             from: address,
             value: weiAmount,
         };
-        console.log("transaction", transaction);
         sendTransaction(transaction);
     }
     useEffect(() => {
@@ -61,7 +57,6 @@ const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             const newBalance = (parseFloat(depositAmount) + userInfo.balance);
             axios.put(`${ENDPOINT}/api/user/${address}`, { newBalance })
                 .then(response => {
-                    console.log("response", response);
                     dispatch(updateBalance(
                         {
                             balance: newBalance
@@ -81,9 +76,6 @@ const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             setStatus("")
         }
     }, [isSuccess, isError, isIdle])
-    useEffect(() => {
-        console.log("depositAmount", parseInt(depositAmount));
-    }, [depositAmount])
 
     return (
         <div className="fixed z-[20] inset-0 overflow-y-auto flex items-center justify-center md:mx-0 mx-3">

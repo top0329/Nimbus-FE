@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addOrder } from '../../Redux/Reducers/orderSlice';
 import { useNavigate } from 'react-router-dom';
-
+import { data } from '../../data';
+import { useDispatch } from 'react-redux';
+import { addSpecs } from '../../Redux/Reducers/specificationSlice';
 interface CardProps {
   instanceId: string;
   img: string;
@@ -11,18 +11,23 @@ interface CardProps {
 }
 const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc }) => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const specificatoinDetail = data.assetsDetail;
 
   const addOrderHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("calling.......")
     event.preventDefault();
-    // const payload = {
-    //   instanceImage: img,
-    //   instanceName: name,
-    //   instanceDesc: desc
-    // }
-    // dispatch(addOrder(payload));
-    console.log("instanceId", instanceId);
+    const specs = specificatoinDetail[instanceId];
+    let specifications: any = [];
+    specs.map((item) => {
+      let detail = {
+        value: item.id,
+        label: `NVIDIA ${instanceId} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+        locations: item.locations,
+        monthlyCost: item.monthly_cost
+      }
+      specifications.push(detail);
+    })
+    dispatch(addSpecs(specifications));
     navigate(`/order/${instanceId}`);
   };
 

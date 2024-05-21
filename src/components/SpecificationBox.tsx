@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-
-interface SelectBoxProps {
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLocations } from '../Redux/Reducers/locationSlice';
+import { useNavigate } from 'react-router-dom';
+import { locationData } from '../data';
+interface SpecificationBoxProps {
     heading: string,
-    options: optionType[];
-    setLocationList: (locations: string[]) => void;
     setInstanceId: (id: string) => void;
     setInstanceLable: (id: string | null) => void;
     setMonthlyCost: (cost: number) => void;
@@ -14,19 +15,38 @@ export interface optionType {
     locations: string[];
     monthlyCost: number;
 }
-const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList, setInstanceId, setInstanceLable, setMonthlyCost }) => {
+const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanceId, setInstanceLable, setMonthlyCost }) => {
 
-    const [selectedOption, setSelectedOption] = useState<string>("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [selectedOption, setSelectedOption] = useState<string | null>("");
+    const specs = useSelector((state: any) => state.specs);
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');
         const selectedMonthlyCost: any = e.target.options[e.target.selectedIndex].getAttribute('data-cost');
-        setSelectedOption(e.target.value);
-        setLocationList(options[e.target.selectedIndex].locations)
+        let locations = locationData.filter(location => specs[e.target.selectedIndex].locations.includes(location.id));
+
+        setSelectedOption(selectedLabel);
         setInstanceId(e.target.value);
         setInstanceLable(selectedLabel);
         setMonthlyCost(parseInt(selectedMonthlyCost));
+        dispatch(addLocations(locations))
     };
+    useEffect(() => {
+        if (specs.length != 0) {
+            let locations = locationData.filter(location => specs[0].locations.includes(location.id));
+            console.log("locations", locations);
+            setSelectedOption(specs[0].label);
+            setInstanceId(specs[0].value);
+            setInstanceLable(specs[0].label);
+            setMonthlyCost(parseInt(specs[0].monthlyCost));
+            dispatch(addLocations(locations))
+        }
+        else {
+            navigate('/rent');
+        }
+    }, [specs]);
 
     return (
         <div className='flex flex-col gap-5 font-space-grotesk'>
@@ -34,12 +54,12 @@ const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList
             <div className="relative inline-block w-full">
                 <select className="py-3 border-[1px] border-dashed rounded-[10px] light-theme-color block appearance-none w-full border-gray-400 hover:border-gray-500 px-4 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                     onChange={handleSelectChange}
-                    value={selectedOption}
+                    value={selectedOption ? selectedOption : ''}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
-                    {options.map((option, index) => (
-                        <option key={index} data-label={option.label} data-cost={option.monthlyCost} value={option.value} className='text-[11px] md:text-[16px]'>
-                            {option.label}
+                    {specs.map((spec: any, index: number) => (
+                        <option key={index} data-label={spec.label} data-cost={spec.monthlyCost} value={spec.value} className='text-[11px] md:text-[16px]'>
+                            {spec.label}
                         </option>
                     ))}
                 </select>
@@ -53,4 +73,4 @@ const SelectBox: React.FC<SelectBoxProps> = ({ heading, options, setLocationList
     );
 };
 
-export default SelectBox;
+export default SpecificationBox;

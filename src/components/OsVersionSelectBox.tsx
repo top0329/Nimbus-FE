@@ -1,39 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { os } from '../data';
 interface SelectBoxProps {
     heading: string;
-    osType: string;
-    options: osType[];
+    osVersion: string;
+    osVersionList: osVersionType[];
     setOsId: (id: number) => void;
     setOsLable: (id: string | null) => void;
 }
-export interface osType {
+export interface osVersionType {
     "id": number;
     "name": string;
     "arch": string;
     "family": string;
 }
 // Function to safely get an instance by ID
-function getOsById(data: Record<string, osType[]>, id: string): osType[] {
+function getOsById(data: Record<string, osVersionType[]>, id: string): osVersionType[] {
     const osList = data[id];
     return osList; // Return the first instance or undefined
 }
-function getNameById(id: number, osData: osType[]) {
+function getNameById(id: number, osData: osVersionType[]) {
     const osItem = osData.find(os => os.id == id);
     return osItem ? osItem.name : 'OS not found';
 }
-const OsVersionSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options, setOsId, setOsLable }) => {
+const OsVersionSelectBox: React.FC<SelectBoxProps> = ({ heading, osVersion, osVersionList, setOsId, setOsLable }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedId = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+        const selectedOs: any = e.target.options[e.target.selectedIndex].getAttribute('data-label');
         setSelectedOption(e.target.value);
-        setOsId(selectedId);
-        const osData = getOsById(os, osType);
-        const osLabel = getNameById(selectedId, osData);
-        setOsLable(osLabel);
+        setOsId(selectedOs);
+        setOsLable(e.target.value);
     };
+
+    useEffect(() => {
+        if (osVersionList.length != 0) {
+            setSelectedOption(osVersionList[0].name);
+            setOsId(osVersionList[0].id);
+            setOsLable(osVersionList[0].name);
+        }
+    }, [osVersionList])
 
     return (
         <div className='flex flex-col gap-5 font-space-grotesk'>
@@ -44,9 +50,9 @@ const OsVersionSelectBox: React.FC<SelectBoxProps> = ({ heading, osType, options
                     value={selectedOption}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
-                    {options.map((option, index) => (
-                        <option key={index} data-label={option.id} value={option.name} className='text-[13px] md:text-[16px]'>
-                            {option.name}
+                    {osVersionList.map((osVersion, index) => (
+                        <option key={index} data-label={osVersion.id} value={osVersion.name} className='text-[13px] md:text-[16px]'>
+                            {osVersion.name}
                         </option>
                     ))}
                 </select>

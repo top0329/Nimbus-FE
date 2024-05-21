@@ -244,121 +244,84 @@ const data = {
                 "gpu_type": "NVIDIA_A16"
             }
         ],
-        "A40": [{
-            "id": "vcg-a40-1c-5g-2vram",
-            "vcpu_count": 1,
-            "ram": 5,
-            "disk": 90,
-            "disk_count": 1,
-            "bandwidth": 3072,
-            "monthly_cost": 55,
-            "type": "vcg",
-            "locations": [],
-            "gpu_vram_gb": 2,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-2c-10g-4vram",
-            "vcpu_count": 2,
-            "ram": 10,
-            "disk": 180,
-            "disk_count": 1,
-            "bandwidth": 4096,
-            "monthly_cost": 105,
-            "type": "vcg",
-            "locations": [
-                "ewr"
-            ],
-            "gpu_vram_gb": 4,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-4c-20g-8vram",
-            "vcpu_count": 4,
-            "ram": 20,
-            "disk": 360,
-            "disk_count": 1,
-            "bandwidth": 5,
-            "monthly_cost": 210,
-            "type": "vcg",
-            "locations": [],
-            "gpu_vram_gb": 8,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-6c-30g-12vram",
-            "vcpu_count": 6,
-            "ram": 30,
-            "disk": 550,
-            "disk_count": 1,
-            "bandwidth": 6,
-            "monthly_cost": 315,
-            "type": "vcg",
-            "locations": [
-                "ewr"
-            ],
-            "gpu_vram_gb": 12,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-8c-40g-16vram",
-            "vcpu_count": 8,
-            "ram": 40,
-            "disk": 740,
-            "disk_count": 1,
-            "bandwidth": 8,
-            "monthly_cost": 420,
-            "type": "vcg",
-            "locations": [
-                "ewr",
-                "nrt"
-            ],
-            "gpu_vram_gb": 16,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-12c-60g-24vram",
-            "vcpu_count": 12,
-            "ram": 60,
-            "disk": 1110,
-            "disk_count": 1,
-            "bandwidth": 10,
-            "monthly_cost": 625,
-            "type": "vcg",
-            "locations": [
-                "lhr"
-            ],
-            "gpu_vram_gb": 24,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-24c-120g-48vram",
-            "vcpu_count": 24,
-            "ram": 120,
-            "disk": 1400,
-            "disk_count": 1,
-            "bandwidth": 16,
-            "monthly_cost": 1250,
-            "type": "vcg",
-            "locations": [
-                "blr"
-            ],
-            "gpu_vram_gb": 48,
-            "gpu_type": "NVIDIA_A40"
-        },
-        {
-            "id": "vcg-a40-96c-480g-192vram",
-            "vcpu_count": 96,
-            "ram": 500,
-            "disk": 1400,
-            "disk_count": 1,
-            "bandwidth": 60,
-            "monthly_cost": 5000,
-            "type": "vcg",
-            "locations": [],
-            "gpu_vram_gb": 192,
-            "gpu_type": "NVIDIA_A40"
-        }],
+        "A40": [
+            {
+                "id": "vcg-a40-2c-10g-4vram",
+                "vcpu_count": 2,
+                "ram": 10,
+                "disk": 180,
+                "disk_count": 1,
+                "bandwidth": 4096,
+                "monthly_cost": 105,
+                "type": "vcg",
+                "locations": [
+                    "ewr"
+                ],
+                "gpu_vram_gb": 4,
+                "gpu_type": "NVIDIA_A40"
+            },
+            {
+                "id": "vcg-a40-6c-30g-12vram",
+                "vcpu_count": 6,
+                "ram": 30,
+                "disk": 550,
+                "disk_count": 1,
+                "bandwidth": 6,
+                "monthly_cost": 315,
+                "type": "vcg",
+                "locations": [
+                    "ewr"
+                ],
+                "gpu_vram_gb": 12,
+                "gpu_type": "NVIDIA_A40"
+            },
+            {
+                "id": "vcg-a40-8c-40g-16vram",
+                "vcpu_count": 8,
+                "ram": 40,
+                "disk": 740,
+                "disk_count": 1,
+                "bandwidth": 8,
+                "monthly_cost": 420,
+                "type": "vcg",
+                "locations": [
+                    "ewr",
+                    "nrt"
+                ],
+                "gpu_vram_gb": 16,
+                "gpu_type": "NVIDIA_A40"
+            },
+            {
+                "id": "vcg-a40-12c-60g-24vram",
+                "vcpu_count": 12,
+                "ram": 60,
+                "disk": 1110,
+                "disk_count": 1,
+                "bandwidth": 10,
+                "monthly_cost": 625,
+                "type": "vcg",
+                "locations": [
+                    "lhr"
+                ],
+                "gpu_vram_gb": 24,
+                "gpu_type": "NVIDIA_A40"
+            },
+            {
+                "id": "vcg-a40-24c-120g-48vram",
+                "vcpu_count": 24,
+                "ram": 120,
+                "disk": 1400,
+                "disk_count": 1,
+                "bandwidth": 16,
+                "monthly_cost": 1250,
+                "type": "vcg",
+                "locations": [
+                    "blr"
+                ],
+                "gpu_vram_gb": 48,
+                "gpu_type": "NVIDIA_A40"
+            }
+        ],
         "A100": [{
             "id": "vcg-a100-1c-6g-4vram",
             "vcpu_count": 1,
@@ -489,19 +452,6 @@ const data = {
                 "nrt"
             ],
             "gpu_vram_gb": 320,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-96c-960g-640vram",
-            "vcpu_count": 96,
-            "ram": 1024,
-            "disk": 2200,
-            "disk_count": 1,
-            "bandwidth": 25600,
-            "monthly_cost": 14000,
-            "type": "vcg",
-            "locations": [],
-            "gpu_vram_gb": 640,
             "gpu_type": "NVIDIA_A100"
         }]
     },

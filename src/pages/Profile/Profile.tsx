@@ -21,7 +21,6 @@ const Profile: React.FC = () => {
       axios.post(`${ENDPOINT}/api/user/nodes/${address}`)
         .then(response => {
           const { nodes } = response.data.nodes;
-          console.log("nodes", nodes);
           dispatch(addOrder(nodes));
         })
         .catch(error => {

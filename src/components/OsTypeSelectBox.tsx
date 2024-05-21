@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { os } from '../data';
+import React, { useEffect, useState } from 'react';
+import { os, vcgOs } from '../data';
 interface SelectBoxProps {
     heading: string;
-    options: string[];
     setOsType: (osType: string) => void;
     setOsList: (list: osType[]) => void;
 }
@@ -17,17 +16,22 @@ function getOsById(data: Record<string, osType[]>, id: string): osType[] {
     const osList = data[id];
     return osList; // Return the first instance or undefined
 }
-const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, options, setOsType, setOsList }) => {
+const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, setOsType, setOsList }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(e.target.value);
         const osname: string = e.target.value.replace(/\s+/g, '').toLowerCase();
-        setOsList(getOsById(os, osname));
         setOsType(osname);
+        setOsList(getOsById(os, osname));
     };
-
+    useEffect(() => {
+        setSelectedOption(vcgOs[0]);
+        const osname: string = vcgOs[0].replace(/\s+/g, '').toLowerCase();
+        setOsType(osname);
+        setOsList(getOsById(os, osname));
+    }, [vcgOs]);
     return (
         <div className='flex flex-col gap-5 font-space-grotesk'>
             <h1 className='text-[20px] dark-theme-color'>{heading}<span className=' text-red-700'>*</span></h1>
@@ -37,9 +41,9 @@ const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, options, setOsType
                     value={selectedOption}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
-                    {options.map((option, index) => (
-                        <option key={index} value={option} className='text-[11px] md:text-[16px]'>
-                            {option}
+                    {vcgOs.map((os, index) => (
+                        <option key={index} value={os} className='text-[11px] md:text-[16px]'>
+                            {os}
                         </option>
                     ))}
                 </select>

@@ -36,9 +36,7 @@ const Overview: React.FC = () => {
             //Backend Fetch & Register
             axios.get(`${ENDPOINT}/api/order/${address}?orderId=${orderId?.id}`)
                 .then(response => {
-                    console.log("response=========>", response.data);
                     setNode(response.data);
-
                 })
                 .catch(error => {
                     toastr.error("Server Disconnected.");

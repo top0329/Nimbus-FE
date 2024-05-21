@@ -4,33 +4,13 @@ import { useParams } from "react-router-dom";
 
 import DefaultLayout from "../../layout/DefaultLayout";
 import LabelCheckBox from "../../components/LabelCheckBox";
-import SelectBox from "../../components/SelectBox";
+import SpecificationBox from "../../components/SpecificationBox";
 import LocationSelectBox from "../../components/LocationSelectBox";
 import SummaryModal, { orderSummary } from "./SummaryModal";
-import { data, os, vcgOs } from "../../data";
-import OsVersionSelectBox, { osType } from "../../components/OsVersionSelectBox";
-import { optionType } from "../../components/SelectBox";
+import { data } from "../../data";
+import OsVersionSelectBox from "../../components/OsVersionSelectBox";
 import OsTypeSelectBox from "../../components/OsTypeSelectBox";
 
-type InstanceType = {
-    id: string;
-    vcpu_count: number;
-    ram: number;
-    disk: number;
-    disk_count: number;
-    bandwidth: number;
-    monthly_cost: number;
-    type: string;
-    locations: string[];
-    gpu_vram_gb: number;
-    gpu_type: string;
-};
-const detail = data.assetsDetail;
-// Function to safely get an instance by ID
-function getInstanceById(data: Record<string, InstanceType[]>, id: string): InstanceType[] {
-    const instances = data[id];
-    return instances; // Return the first instance or undefined
-}
 function getAssetDescription(id: string | undefined) {
     const assets = data.assets;
     const asset = assets.find(asset => asset.id === id);
@@ -43,6 +23,10 @@ function getAssetImage(id: string | undefined) {
 }
 
 const Order: React.FC = () => {
+    const instance = useParams<{ id: string }>();
+    const instanceType = instance.id;
+    const instanceDesc = getAssetDescription(instanceType);
+    const instanceImg = getAssetImage(instanceType);
 
     const [selectedInstanceId, setInstanceId] = useState<string>("");
 
@@ -50,7 +34,7 @@ const Order: React.FC = () => {
 
     const [osId, setOsId] = useState<number>(0);
     const [osType, setOsType] = useState<string>("");
-    const [osList, setOsList] = useState<osType[]>([]);
+    const [osList, setOsList] = useState<any>([]);
     const [osLable, setOsLable] = useState<string | null>("");
 
     const [selectedInstanceLable, setInstanceLable] = useState<string | null>("");
@@ -60,6 +44,7 @@ const Order: React.FC = () => {
     const [ddosProtection, setDdosProtection] = useState<boolean>(true);
     const [enableIP6, setEnableIP6] = useState<boolean>(true);
     const [enableBackUps, setEnableBackUps] = useState<boolean>(true);
+
     const [orderDetail, setDetail] = useState<orderSummary>();
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -77,44 +62,23 @@ const Order: React.FC = () => {
             location: location,
             summary: selectedInstanceLable,
         })
+        console.log("orderDetail", orderDetail);
     }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, monthlyCost, ddosProtection, enableIP6, enableBackUps])
 
     const closeModal = () => {
         setModalOpen(false);
     };
 
-    const [locationList, setLocationList] = useState<string[]>([]);
-    const instance = useParams<{ id: string }>();
-    const instanceType = instance.id;
-    const instanceDesc = getAssetDescription(instanceType);
-    const instanceImg = getAssetImage(instanceType);
-    const options: optionType[] = [];
-
-    if (instanceType) {
-        const gpuTypes = getInstanceById(detail, instanceType);
-        gpuTypes.map((item) => {
-            let detail = {
-                value: item.id,
-                label: `NVIDIA ${instanceType} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
-                locations: item.locations,
-                monthlyCost: item.monthly_cost
-            }
-            options.push(detail);
-        })
-    }
     const handleOrder = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         //validate break point
-        if (selectedInstanceId && locationId && osId && hostname) {
+        if (selectedInstanceId && locationId && osId && hostname && monthlyCost) {
             setModalOpen(true);
         }
         else {
             toastr.error("All Input Required");
         }
     }
-    useEffect(() => {
-        console.log("isModalOpen", isModalOpen); // Should log true when the modal opens
-    }, [isModalOpen]);
 
     return (
         <DefaultLayout>
@@ -146,25 +110,22 @@ const Order: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-10">
-                    <SelectBox
+                    <SpecificationBox
                         heading="Select the server specification"
-                        options={options}
-                        setLocationList={setLocationList}
                         setInstanceId={setInstanceId}
                         setMonthlyCost={setMonthlyCost}
                         setInstanceLable={setInstanceLable}
                     />
-                    <LocationSelectBox locations={locationList} setLocationId={setLocationId} setLocation={setLocation} />
+                    <LocationSelectBox setLocationId={setLocationId} setLocation={setLocation} />
                     <OsTypeSelectBox
                         heading="Select the operating System"
-                        options={vcgOs}
                         setOsType={setOsType}
                         setOsList={setOsList}
                     />
                     <OsVersionSelectBox
-                        heading="Select the operating System"
-                        osType={osType}
-                        options={osList}
+                        heading="Select the operating Version"
+                        osVersion={osType}
+                        osVersionList={osList}
                         setOsId={setOsId}
                         setOsLable={setOsLable}
                     />

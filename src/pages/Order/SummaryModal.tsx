@@ -33,7 +33,7 @@ export interface orderSummary {
 }
 
 const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
-
+    console.log("orderdetail", orderDetail);
     //meta detail
     const name = orderDetail?.name.replace(/[^a-zA-Z\-]/g, '');
     const instanceId = orderDetail?.instanceId;
@@ -83,7 +83,6 @@ const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) =>
                 }
                 await axios.post(`${ENDPOINT}/api/order/${address}`, payload, {
                     headers: {
-
                         'Content-type': "application/json"
                     },
                 })

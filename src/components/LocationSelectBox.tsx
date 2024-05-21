@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-import { locationData } from '../data';
+import { useSelector } from 'react-redux';
 
 interface Location {
     code: string;
@@ -8,30 +7,32 @@ interface Location {
     id: string;
 }
 interface LocationSelectBoxProps {
-    locations: string[];
     setLocationId: (id: string) => void;
     setLocation: (id: string) => void;
 }
-export function filterLocations(locationData: Location[], locations: string[]) {
-    // Filter the locationData based on the locations array
-    return locationData.filter(location => locations.includes(location.id));
-}
-const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ locations, setLocationId, setLocation }) => {
-    const locationList: Location[] = filterLocations(locationData, locations);
+
+const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, setLocation }) => {
+
+    const locations = useSelector((state: any) => state.locations);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Location | null>(null);
-
+    console.log("locations=========>", locations);
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-    const handleOptionSelect = (country: Location) => {
-        setSelectedOption(country);
+    const handleOptionSelect = (location: Location) => {
+        setSelectedOption(location);
+        setLocationId(location.id);
+        setLocation(location.name);
         setIsOpen(false);
-        setLocationId(country.id);
-        setLocation(country.name);
     };
     useEffect(() => {
-        setSelectedOption(null);
+        if (locations.length != 0) {
+            setSelectedOption(locations[0]);
+            setIsOpen(false);
+            setLocationId(locations[0].id);
+            setLocation(locations[0].name);
+        }
     }, [locations])
 
     return (
@@ -48,10 +49,10 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ locations, setLoc
             </div>
             {isOpen && (
                 <div className="z-20 absolute mt-2 border rounded shadow-md w-full  max-h-[200px] overflow-y-auto" style={{ backgroundColor: "#F5FAFF" }}>
-                    {locationList.map((country, index) => (
-                        <div key={index} onClick={() => handleOptionSelect(country)} className="p-2 flex flex-row cursor-pointer items-center gap-3">
-                            <img src={`https://flagcdn.com/w40/${country?.code}.png`} alt={country?.code} className='rounded-full overflow-hidden w-8 h-8' />
-                            <h2>{country?.name}</h2>
+                    {locations.map((location: any, index: number) => (
+                        <div key={index} onClick={() => handleOptionSelect(location)} className="p-2 flex flex-row cursor-pointer items-center gap-3">
+                            <img src={`https://flagcdn.com/w40/${location?.code}.png`} alt={location?.code} className='rounded-full overflow-hidden w-8 h-8' />
+                            <h2>{location?.name}</h2>
                         </div>
                     ))
                     }
