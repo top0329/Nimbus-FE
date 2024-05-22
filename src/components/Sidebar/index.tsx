@@ -164,8 +164,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             }
             <section className='font-space-grotesk'>
               {/* <h1 className='light-theme-color text-[16px]'>{isConnected ? 'James Bond' : 'No connected'}</h1> */}
-              <p className='text-light text-[14px]'><b>Balance:</b> {isConnected && balance ? `${balance}` : 'No connected'} {isConnected && symbol ? `${symbol}` : ''}</p>
-              <p className='text-light text-[14px]'><b>Wallet:</b> {isConnected && address ? `${address.substring(0, 4)}...${address.substring(address.length - 4)}` : 'No connected'}</p>
+              <p className='text-light text-[12px]'><b>Balance:</b> {isConnected && balance ? `${balance}` : 'No connected'} {isConnected && symbol ? `${symbol}` : ''}</p>
+              <p className='text-light text-[12px]'><b>Wallet:</b> {isConnected && address ? `${address.substring(0, 4)}...${address.substring(address.length - 4)}` : 'No connected'}</p>
             </section>
           </div>
         </div>
