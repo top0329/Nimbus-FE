@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addLocations } from '../Redux/Reducers/locationSlice';
 import { useNavigate } from 'react-router-dom';
 import { data, locationData } from '../data';
@@ -20,23 +20,8 @@ const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanc
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const specs = useSelector((state: any) => state.specs);
     const [selectedOption, setSelectedOption] = useState<string | null>("");
-
-    const specificatoinDetail = data.assetsDetail;
-    const specifications = specificatoinDetail[instanceType];
-
-    let specs: any = [];
-    specifications.map((item: any) => {
-        let detail = {
-            value: item.id,
-            label: `NVIDIA ${instanceType} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
-            locations: item.locations,
-            monthlyCost: item.monthly_cost
-        }
-        specs.push(detail);
-    })
-
-
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');

@@ -140,35 +140,35 @@ const Overview: React.FC = () => {
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">vCPU/s:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk">1 vCPUs</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.vcpu_count} vCPUs</h3>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">RAM:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk">2 GB</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.ram} MB</h3>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">Storage:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk">25 GB</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.disk} GB</h3>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">Bandwidth:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk4TB" >4TB</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk4TB" >{node?.allowed_bandwidth}TB</h3>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[30px] flex-[100%] md:flex-[30%]">
                         <div className="flex flex-col gap-3">
                             <h2>Cost</h2>
                             <div className="bg-white light-theme-color font-press-start-2p text-[20px] text-center border-[1px] border-dashed rounded-[12px] p-5">
-                                $32.9
+                                ${node?.monthlyCost}
                             </div>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk  w-[50%]">Label:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk">test</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.label}</h3>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">OS:</h3>
-                            <h3 className="light-theme-color text-[20px] font-space-grotesk">Alma Linux 8 x64</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.os}</h3>
                         </div>
                     </div>
                 </div>
