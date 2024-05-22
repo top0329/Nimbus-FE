@@ -13,8 +13,8 @@ import { useAccount } from 'wagmi';
 import { useDispatch } from 'react-redux';
 
 
-// const ENDPOINT = 'http://localhost:5000';
-const ENDPOINT = 'http://149.248.9.67:5000';
+const ENDPOINT = 'http://localhost:5000';
+// const ENDPOINT = 'http://149.248.9.67:5000';
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

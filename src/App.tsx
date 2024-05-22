@@ -10,6 +10,7 @@ import Nodes from './pages/Nodes/Nodes';
 import Staking from './pages/Staking/Staking';
 import Profile from './pages/Profile/Profile';
 import Support from './pages/Support/Support';
+import Admin from './pages/Admin/Admin';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,6 +37,7 @@ function App() {
       <Route path='/staking' element={<Staking />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/support' element={<Support />} />
+      <Route path='/admin' element={<Admin />} />
     </Routes>
   );
 }

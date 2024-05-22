@@ -9,53 +9,23 @@ const FAQList: React.FC = () => {
         {
             id: 1,
             title: 'How do I rent a GPU on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
+            content: `To rent a GPU on Nimbus, connect your wallet to the DApp, navigate to the 'Rent GPU' section, select the GPU model that suits your project needs, and follow the prompts to finalize your rental by making the payment. You can make payments using supported cryptocurrencies directly from your digital wallet.`
         },
         {
             id: 2,
             title: 'What types of nodes can I deploy on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
+            content: `The node deployment feature is currently under development. Once live, you will be able to deploy various blockchain nodes directly through our platform. Stay tuned for updates on this feature!`
         },
         {
             id: 3,
             title: 'How can I stake tokens on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
+            content: `Staking features are also in the development phase. We will notify all users when this function becomes available, allowing you to stake tokens and earn rewards directly on our platform.`
         },
         {
             id: 4,
             title: 'How is my data kept secure on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 5,
-            title: 'How can I modify my node configurations?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 6,
-            title: 'How do I rent a GPU on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 7,
-            title: 'What types of nodes can I deploy on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 8,
-            title: 'How can I stake tokens on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 9,
-            title: 'How is my data kept secure on Nimbus?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
-        {
-            id: 10,
-            title: 'How can I modify my node configurations?',
-            content: `To rent a GPU, navigate to the 'Rent GPU' section in your dashboard. Select the GPU type you need, specify the rental duration, and confirm your rental. You'll receive a confirmation and instructions on how to access your rented GPU.`
-        },
+            content: `Nimbus leverages blockchain technology to ensure security and transparency in all transactions. You can securely rent GPUs and utilize services without the need for KYC verification, maintaining your privacy and security throughout your interactions with the platform.`
+        }
     ];
 
     return (

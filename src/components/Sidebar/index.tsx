@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useAccount } from 'wagmi'
+import { useAccount, useBalance } from 'wagmi'
 import { data } from '../../data';
 import Identicon from "identicon.js";
 
@@ -13,7 +13,9 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const { address, isConnected } = useAccount();
-  
+  const result = useBalance({ address: address });
+  const balance = parseFloat(result.data?.formatted).toFixed(3);
+  const symbol = result.data?.symbol;
   const user = useSelector((state: any) => state.user);
   const location = useLocation();
   const { pathname } = location;
@@ -161,8 +163,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 (<img src="/Account.ico" alt="avatar" className='border-[1px] border-dashed light-theme-color rounded-[10px] h-[40px]' />)
             }
             <section className='font-space-grotesk'>
-              <h1 className='light-theme-color text-[16px]'>{isConnected ? 'James Bond' : 'No connected'}</h1>
-              <p className='text-light text-[12px]'>Wallet: {isConnected && address ? `${address.substring(0, 4)}...${address.substring(address.length - 4)}` : 'No connected'}</p>
+              {/* <h1 className='light-theme-color text-[16px]'>{isConnected ? 'James Bond' : 'No connected'}</h1> */}
+              <p className='text-light text-[14px]'><b>Balance:</b> {isConnected && balance ? `${balance}` : 'No connected'} {isConnected && symbol ? `${symbol}` : ''}</p>
+              <p className='text-light text-[14px]'><b>Wallet:</b> {isConnected && address ? `${address.substring(0, 4)}...${address.substring(address.length - 4)}` : 'No connected'}</p>
             </section>
           </div>
         </div>
