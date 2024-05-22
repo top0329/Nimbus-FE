@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLocations } from '../Redux/Reducers/locationSlice';
 import { useNavigate } from 'react-router-dom';
-import { data, locationData } from '../data';
+import { locationData } from '../data';
 interface SpecificationBoxProps {
     heading: string,
     setInstanceId: (id: string) => void;
     setInstanceLable: (id: string | null) => void;
     setMonthlyCost: (cost: number) => void;
-    instanceType: string;
+    setCpu: (cpu: number) => void;
+    setRam: (ram: number) => void;
+    setStorage: (storage: number) => void;
+    setBandWidth: (band: number) => void;
 }
 export interface optionType {
     value: string;
@@ -16,23 +19,30 @@ export interface optionType {
     locations: string[];
     monthlyCost: number;
 }
-const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanceId, setInstanceLable, setMonthlyCost, instanceType }) => {
+const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanceId, setInstanceLable, setMonthlyCost, setCpu, setRam, setStorage, setBandWidth }) => {
 
+    const [selectedOption, setSelectedOption] = useState<any>("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const specs = useSelector((state: any) => state.specs);
-    const [selectedOption, setSelectedOption] = useState<string | null>("");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedLabel = e.target.options[e.target.selectedIndex].getAttribute('data-label');
-        const selectedMonthlyCost: any = e.target.options[e.target.selectedIndex].getAttribute('data-cost');
+        let selectedLabel: any = e.target.options[e.target.selectedIndex].getAttribute('data-label');
+        let selectedMonthlyCost: any = e.target.options[e.target.selectedIndex].getAttribute('data-cost');
+        let selectedCpuCount: any = e.target.options[e.target.selectedIndex].getAttribute('data-cpu');
+        let selectedRam: any = e.target.options[e.target.selectedIndex].getAttribute('data-ram');
+        let selectedStorage: any = e.target.options[e.target.selectedIndex].getAttribute('data-storage');
+        let selectedBandwidth: any = e.target.options[e.target.selectedIndex].getAttribute('data-bandwidth');
         let locations = locationData.filter(location => specs[e.target.selectedIndex].locations.includes(location.id));
-
-        setSelectedOption(selectedLabel);
+        setSelectedOption(e.target.value);
         setInstanceId(e.target.value);
         setInstanceLable(selectedLabel);
         setMonthlyCost(parseInt(selectedMonthlyCost));
-        dispatch(addLocations(locations))
+        setCpu(selectedCpuCount);
+        setRam(selectedRam);
+        setStorage(selectedStorage);
+        setBandWidth(selectedBandwidth);
+        dispatch(addLocations(locations));
     };
     useEffect(() => {
         if (specs.length != 0) {
@@ -41,6 +51,10 @@ const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanc
             setInstanceId(specs[0].value);
             setInstanceLable(specs[0].label);
             setMonthlyCost(parseInt(specs[0].monthlyCost));
+            setCpu(specs[0].cpuCount);
+            setRam(specs[0].ram);
+            setStorage(specs[0].storage);
+            setBandWidth(specs[0].bandwidth);
             dispatch(addLocations(locations))
         }
         else {
@@ -54,11 +68,16 @@ const SpecificationBox: React.FC<SpecificationBoxProps> = ({ heading, setInstanc
             <div className="relative inline-block w-full">
                 <select className="py-3 border-[1px] border-dashed rounded-[10px] light-theme-color block appearance-none w-full border-gray-400 hover:border-gray-500 px-4 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                     onChange={handleSelectChange}
-                    value={selectedOption ? selectedOption : ''}
+                    value={selectedOption}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
                     {specs.map((spec: any, index: number) => (
-                        <option key={index} data-label={spec.label} data-cost={spec.monthlyCost} value={spec.value} className='text-[11px] md:text-[16px]'>
+                        <option key={index} data-label={spec.label} 
+                        data-cpu={spec.cpuCount} 
+                        data-ram={spec.ram} 
+                        data-storage={spec.storage}
+                        data-bandwidth={spec.bandwidth}
+                            data-cost={spec.monthlyCost} value={spec.value} className='text-[11px] md:text-[16px]'>
                             {spec.label}
                         </option>
                     ))}

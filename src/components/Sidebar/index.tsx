@@ -13,6 +13,7 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const { address, isConnected } = useAccount();
+  
   const user = useSelector((state: any) => state.user);
   const location = useLocation();
   const { pathname } = location;

@@ -32,6 +32,10 @@ export interface orderSummary {
     ddosProtection: boolean;
     enableIpv6: boolean;
     enableBackUps: boolean;
+    cpuCount: number,
+    ram: number,
+    storage: number,
+    bandwidth: number,
 }
 
 const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
@@ -48,6 +52,10 @@ const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) =>
     const location = orderDetail?.location;
     const os = orderDetail?.os;
     const summary = orderDetail?.summary;
+    const cpuCount = orderDetail?.cpuCount;
+    const ram = orderDetail?.ram;
+    const storage = orderDetail?.storage;
+    const bandwidth = orderDetail?.bandwidth;
 
     if (!isOpen) return null;
     const [status, setStatus] = useState<string>("");
@@ -80,7 +88,11 @@ const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) =>
                     enableIpv6,
                     summary,
                     os,
-                    monthlyCost
+                    monthlyCost,
+                    cpuCount,
+                    ram,
+                    storage,
+                    bandwidth
                 }
                 await axios.post(`${ENDPOINT}/api/order/${address}`, payload, {
                     headers: {

@@ -20,7 +20,6 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
         setIsOpen(!isOpen);
     };
     const handleOptionSelect = (location: Location) => {
-        console.log("selected/////");
         setSelectedOption(location);
         setLocationId(location.id);
         setLocation(location.name);
@@ -28,7 +27,6 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
     };
     useEffect(() => {
         if (locations.length != 0) {
-            console.log("effect");
             setSelectedOption(locations[0]);
             setIsOpen(false);
             setLocationId(locations[0].id);
@@ -49,7 +47,7 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
                 </svg>
             </div>
             {isOpen && (
-                <div className="z-20 absolute mt-2 border rounded shadow-md w-full  max-h-[200px] overflow-y-auto" style={{ backgroundColor: "#F5FAFF" }}>
+                <div className="z-20 absolute mt-2 border rounded-[10px] shadow-md w-full  max-h-[200px] overflow-y-auto" style={{ backgroundColor: "#F5FAFF", borderColor: "#4D8CEC" }}>
                     {locations.map((location: any, index: number) => (
                         <div key={index} onClick={() => handleOptionSelect(location)} className="p-2 flex flex-row cursor-pointer items-center gap-3">
                             <img src={`https://flagcdn.com/w40/${location?.code}.png`} alt={location?.code} className='rounded-full overflow-hidden w-8 h-8' />

@@ -23,7 +23,11 @@ const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc }) => {
         value: item.id,
         label: `NVIDIA ${instanceId} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
         locations: item.locations,
-        monthlyCost: item.monthly_cost
+        monthlyCost: item.monthly_cost,
+        cpuCount: item.vcpu_count,
+        ram: item.ram,
+        storage: item.disk,
+        bandwidth: item.bandwidth
       }
       specs.push(detail);
     })

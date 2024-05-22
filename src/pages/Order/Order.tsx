@@ -41,9 +41,15 @@ const Order: React.FC = () => {
     const [locationId, setLocationId] = useState<string>("");
     const [location, setLocation] = useState<string>("");
     const [monthlyCost, setMonthlyCost] = useState<number>(0);
-    const [ddosProtection, setDdosProtection] = useState<boolean>(true);
-    const [enableIP6, setEnableIP6] = useState<boolean>(true);
-    const [enableBackUps, setEnableBackUps] = useState<boolean>(true);
+    const [cpuCount, setCpu] = useState<number>(0);
+    const [ram, setRam] = useState<number>(0);
+    const [storage, setStorage] = useState<number>(0);
+    const [bandwidth, setBandWidth] = useState<number>(0);
+    const [ddosProtection, setDdosProtection] = useState<boolean>(false);
+    const [enableIP6, setEnableIP6] = useState<boolean>(false);
+    const [enableBackUps, setEnableBackUps] = useState<boolean>(false);
+
+
 
     const [orderDetail, setDetail] = useState<orderSummary>();
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -61,6 +67,10 @@ const Order: React.FC = () => {
             os: osLable,
             location: location,
             summary: selectedInstanceLable,
+            cpuCount:cpuCount,
+            ram:ram,
+            storage:storage,
+            bandwidth:bandwidth,
         })
     }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, monthlyCost, ddosProtection, enableIP6, enableBackUps])
 
@@ -114,7 +124,10 @@ const Order: React.FC = () => {
                         setInstanceId={setInstanceId}
                         setMonthlyCost={setMonthlyCost}
                         setInstanceLable={setInstanceLable}
-                        instanceType = {instanceType}
+                        setCpu={setCpu}
+                        setRam={setRam}
+                        setStorage={setStorage}
+                        setBandWidth={setBandWidth}
                     />
                     <LocationSelectBox setLocationId={setLocationId} setLocation={setLocation} />
                     <OsTypeSelectBox
@@ -129,7 +142,10 @@ const Order: React.FC = () => {
                         setOsId={setOsId}
                         setOsLable={setOsLable}
                     />
-                    <input type="text" value={hostname} onChange={(e) => setHostName(e.target.value)} placeholder="Nam Ho" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
+                    <div className="font-space-grotesk">
+                        <h1 className='text-[20px] dark-theme-color mb-[20px]'>Host Name<span className=' text-red-700'>*</span></h1>
+                        <input type="text" value={hostname} onChange={(e) => setHostName(e.target.value)} placeholder="Host Name" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
+                    </div>
                     <hr className="h-[3px] light-theme-color" />
                     <button onClick={handleOrder} className='self-end customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk md:w-[30%]' style={{ backgroundColor: "#4D8CEC" }}>
                         Proceed Order

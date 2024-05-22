@@ -4,7 +4,7 @@ interface CheckboxWithLabelProps {
     onChange: (status: boolean) => void;
 }
 const LabelCheckBox: React.FC<CheckboxWithLabelProps> = ({ label, onChange }) => {
-    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
