@@ -15,7 +15,9 @@ import { useDispatch } from 'react-redux';
 
 // const ENDPOINT = 'http://localhost:5000';
 // const ENDPOINT = 'http://149.248.9.67';
-const ENDPOINT = 'https://nimbusnetwork.net';
+// const ENDPOINT = 'https://nimbusnetwork.net';
+const ENDPOINT = 'http://backend.nimbusnetwork.net';
+
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
