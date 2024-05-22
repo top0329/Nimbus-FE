@@ -16,6 +16,9 @@ const ProfileCard: React.FC = () => {
         const orderId = e.currentTarget.getAttribute('data-val');
         navigate(`/overview/${orderId}`);
     }
+    const handleClick1 = (orderId: string) => {
+        navigate(`/overview/${orderId}`);
+    }
     const handleRent = () => {
         navigate('/rent');
     }
@@ -37,7 +40,7 @@ const ProfileCard: React.FC = () => {
                     isSmallScreen ?
                         (
                             nodesData.length > 0 ? (nodesData.map((node: any, index: number) => (
-                                <div key={index} className='flex flex-col font-space-grotesk border border-dashed rounded-[10px]' style={{ borderColor: '#4D8CEC' }}>
+                                <div key={index} onClick={() => handleClick1(node.orderId)} className='customTr flex flex-col font-space-grotesk border border-dashed rounded-[10px]' style={{ borderColor: '#4D8CEC' }}>
                                     <div className='flex flex-row py-2  px-2' >
                                         <h1 className='dark-theme-color text-[18px] font-bold w-[150px]'>Name:&nbsp;</h1>
                                         <h2 className='dark-theme-color text-[15px]'>{node.hostname}</h2>

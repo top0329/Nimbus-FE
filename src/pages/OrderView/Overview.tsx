@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout";
@@ -17,6 +18,7 @@ const Overview: React.FC = () => {
     const [node, setNode] = useState<any>();
 
     const { isConnected, address } = useAccount();
+    const navigate = useNavigate();
     // Function to toggle the boolean state
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
@@ -163,15 +165,34 @@ const Overview: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex flex-row text-left">
-                            <h3 className="dark-theme-color text-[20px] font-space-grotesk  w-[50%]">Label:</h3>
+                            <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">Label:</h3>
                             <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.label}</h3>
                         </div>
                         <div className="flex flex-row text-left">
                             <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">OS:</h3>
                             <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.os}</h3>
                         </div>
+                        <div className="flex flex-row text-left">
+                            <h3 className="dark-theme-color text-[20px] font-space-grotesk w-[50%]">Status:</h3>
+                            <h3 className="light-theme-color text-[20px] font-space-grotesk">{node?.status}</h3>
+                        </div>
                     </div>
                 </div>
+                {
+                    node?.status == "pending" &&
+                    <div className="flex flex-col gap-4 text-[20px] py-[20px] px-[30px] mt-[40px] rounded-[24px] dark-theme-color font-space-grotesk"
+                        style={{ backgroundColor: "#fdf5e6" }}
+                    >
+                        <h1 className="md:text-[24px]">👋Dear valued customer,</h1>
+                        <p className=" leading-7 ">Please note that due to our beta version, your order may take 10-15 minutes to be approved.<br />
+                            Kindly check your <b className="cursor-pointer hover:opacity-70 underline" onClick={() => navigate('/profile')}>Profile</b> page for updates.<br />
+                            Thank you for your understanding.<br />
+                        </p>
+                        <h2>
+                            <b>💖NimbusDapp Dev Team</b>
+                        </h2>
+                    </div>
+                }
             </div>
         </DefaultLayout >
     )

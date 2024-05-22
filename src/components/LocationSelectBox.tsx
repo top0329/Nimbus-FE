@@ -20,7 +20,7 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
         setIsOpen(!isOpen);
     };
     const handleOptionSelect = (location: Location) => {
-        console.log("selected/////")
+        console.log("selected/////");
         setSelectedOption(location);
         setLocationId(location.id);
         setLocation(location.name);
@@ -28,7 +28,7 @@ const LocationSelectBox: React.FC<LocationSelectBoxProps> = ({ setLocationId, se
     };
     useEffect(() => {
         if (locations.length != 0) {
-            console.log("effect")
+            console.log("effect");
             setSelectedOption(locations[0]);
             setIsOpen(false);
             setLocationId(locations[0].id);

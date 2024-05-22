@@ -11,7 +11,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrder } from '../../Redux/Reducers/orderSlice';
 
-const ENDPOINT = "http://localhost:5000";
+// const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = 'http://149.248.9.67:5000';
+
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
