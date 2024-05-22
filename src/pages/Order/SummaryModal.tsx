@@ -12,7 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder } from '../../Redux/Reducers/orderSlice';
 
 // const ENDPOINT = "http://localhost:5000";
-const ENDPOINT = 'http://149.248.9.67:5000';
+// const ENDPOINT = 'http://149.248.9.67:5000';
+const ENDPOINT = 'https://nimbusnetwork.net';
+
 
 interface ModalProps {
     isOpen: boolean;

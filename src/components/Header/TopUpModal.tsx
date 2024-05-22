@@ -10,7 +10,9 @@ import { useAccount, useSendTransaction } from 'wagmi';
 import { updateBalance } from '../../Redux/Reducers/userSlice';
 import axios from 'axios';
 // const ENDPOINT = "http://localhost:5000";
-const ENDPOINT = 'http://149.248.9.67:5000';
+// const ENDPOINT = 'http://149.248.9.67:5000';
+const ENDPOINT = 'https://nimbusnetwork.net';
+
 
 const OWNERADDRESS = "0x3b69246ca867264090c0F6565b24cAB109292F15";
 interface ModalProps {

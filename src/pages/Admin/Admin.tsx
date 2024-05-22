@@ -4,8 +4,10 @@ import toastr from 'toastr';
 import DefaultLayout from '../../layout/DefaultLayout';
 import { useAccount } from 'wagmi';
 import { useNavigate } from 'react-router-dom';
-const ENDPOINT = "http://localhost:5000";
+// const ENDPOINT = "http://localhost:5000";
 // const ENDPOINT = 'http://149.248.9.67:5000';
+const ENDPOINT = 'https://nimbusnetwork.net';
+
 
 const Admin: React.FC = () => {
   const navigate = useNavigate();

@@ -9,7 +9,9 @@ import { useParams } from "react-router-dom";
 import { useAccount } from "wagmi";
 
 // const ENDPOINT = 'http://localhost:5000';
-const ENDPOINT = 'http://149.248.9.67:5000';
+// const ENDPOINT = 'http://149.248.9.67:5000';
+const ENDPOINT = 'https://nimbusnetwork.net';
+
 
 const Overview: React.FC = () => {
     const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
