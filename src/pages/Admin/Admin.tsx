@@ -19,7 +19,7 @@ const Admin: React.FC = () => {
   const handleSibmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     //validate break point
-    if (wallet && direct_connect && proxy_connect) {
+    if (wallet && direct_connect && orderId) {
       const payload = {
         direct_connect,
         proxy_connect,
