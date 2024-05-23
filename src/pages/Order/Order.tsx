@@ -49,8 +49,6 @@ const Order: React.FC = () => {
     const [enableIP6, setEnableIP6] = useState<boolean>(false);
     const [enableBackUps, setEnableBackUps] = useState<boolean>(false);
 
-
-
     const [orderDetail, setDetail] = useState<orderSummary>();
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -67,10 +65,10 @@ const Order: React.FC = () => {
             os: osLable,
             location: location,
             summary: selectedInstanceLable,
-            cpuCount:cpuCount,
-            ram:ram,
-            storage:storage,
-            bandwidth:bandwidth,
+            cpuCount: cpuCount,
+            ram: ram,
+            storage: storage,
+            bandwidth: bandwidth,
         })
     }, [selectedInstanceId, hostname, osId, selectedInstanceLable, locationId, location, monthlyCost, ddosProtection, enableIP6, enableBackUps])
 

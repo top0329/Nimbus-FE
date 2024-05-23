@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash, faCopy, faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import { useAccount } from "wagmi";
 
@@ -12,31 +9,29 @@ import { useAccount } from "wagmi";
 // const ENDPOINT = 'http://149.248.9.67:5000';
 const ENDPOINT = 'https://nimbusnetwork.net';
 
-
 const Overview: React.FC = () => {
     const hasShownWarningRef = useRef(false); // Use a ref to track if warning has been shown
     const orderId = useParams<{ id: string }>();
-    const [isVisible, setIsVisible] = useState<boolean>(false);
     const [node, setNode] = useState<any>();
-
+    const [publickey, setPublickey] = useState<string>();
     const { isConnected, address } = useAccount();
-    const navigate = useNavigate();
-    // Function to toggle the boolean state
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    };
-    const [showMessage, setShowMessage] = useState(false);
-
-    const copyToClipboard = async (text: any) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setShowMessage(true);
-            setTimeout(() => setShowMessage(false), 500); // Hide the message after 1.5 seconds
-        } catch (err) {
-            toastr.error("Something went wrong...")
-        }
-    };
-
+    const handleSubmit = () => {
+        axios.put(`${ENDPOINT}/api/order/update/publickey/${address}`,
+            {
+                publickey: publickey,
+                orderId: orderId?.id
+            },
+            {
+                headers: {
+                    'Content-type': "application/json"
+                },
+            }
+        ).then((result) => {
+            toastr.success("Activating...\nPlease wait.");
+        }).catch(err => {
+            toastr.error("Server Error.");
+        })
+    }
     useEffect(() => {
         if (isConnected && !hasShownWarningRef.current) {
             //Backend Fetch & Register
@@ -66,8 +61,6 @@ const Overview: React.FC = () => {
                                 <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">Created {(Math.floor((new Date().setHours(0, 0, 0, 0) - new Date(node?.startDate).setHours(0, 0, 0, 0)) / (1000 * 60 * 60 * 24)))} days ago</h2>
                             </div>
                             <div className="flex flex-row">
-                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">{node?.main_ip}</h2>
-                                <h2 className="md:text-[20px] text-[16px] font-space-grotesk light-theme-color">&nbsp;&nbsp;//&nbsp;&nbsp;</h2>
                                 <h2 className="md:text-[20px] text-[16px] font-space-grotesk dark-theme-color">{node?.locationDetail}</h2>
                             </div>
                         </div>
@@ -88,51 +81,16 @@ const Overview: React.FC = () => {
                             <h3 className="light-theme-color text-[20px]">{node?.locationDetail}</h3>
                         </div>
                         <div className="flex flex-row text-left gap-2">
-                            <h3 className="dark-theme-color text-[20px] w-[50%]">IP Address:</h3>
-                            <h3 className="light-theme-color text-[20px]">{node?.main_ip}</h3>
-                        </div>
-                        <div className="flex flex-row text-left gap-2">
                             <h3 className="dark-theme-color text-[20px] w-[50%]">Username:</h3>
                             <h3 className="light-theme-color text-[20px]">{node?.user_scheme}</h3>
                         </div>
-                        <div className="flex flex-row text-left items-center gap-2">
-                            <h3 className="dark-theme-color text-[20px] w-[50%]">Password:</h3>
-                            <div className="flex flex-row items-center">
-                                <div className="w-[100px] overflow-hidden mr-2">
-                                    {
-                                        isVisible ?
-                                            (<h2 className="light-theme-color text-[16px]">{node?.default_password.length > 7 ? `${node?.default_password.substring(0, 7)}...` : node?.default_password}</h2>) : (
-                                                <>
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                    <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
-                                                </>
-                                            )
-                                    }
-                                </div>
-                                <div className="flex flex-row gap-3 items-center">
-                                    {
-                                        isVisible ?
-                                            <FontAwesomeIcon onClick={toggleVisibility} icon={faEyeSlash} className="light-theme-color cursor-pointer" />
-                                            :
-                                            <FontAwesomeIcon onClick={toggleVisibility} icon={faEye} className="light-theme-color cursor-pointer" />
-                                    }
-                                    <div className="relative">
-                                        <FontAwesomeIcon icon={faCopy} className="light-theme-color cursor-pointer" onClick={() => copyToClipboard(node?.default_password)} />
-                                        {showMessage && (
-                                            <div className="absolute bottom-[25px] right-[10px] w-[80px] light-theme-color border border-dashed shadow-md p-1 rounded mt-0 transition-opacity">
-                                                copied !
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        <div className="flex flex-row text-left gap-2">
+                            <h3 className="dark-theme-color text-[20px] w-[50%]">Direct SSH Connect:</h3>
+                            <h3 className="light-theme-color text-[20px]">{node?.direct_connect}</h3>
+                        </div>
+                        <div className="flex flex-row text-left gap-2">
+                            <h3 className="dark-theme-color text-[20px] w-[50%]">Proxy SSH Connect:</h3>
+                            <h3 className="light-theme-color text-[20px]">{node?.proxy_connect}</h3>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[30px] flex-[100%] md:flex-[30%]">
@@ -182,17 +140,30 @@ const Overview: React.FC = () => {
                 </div>
                 {
                     node?.status == "pending" &&
+                    <div className="flex flex-row gap-4 w-full justify-center mt-4">
+                        <div className="font-space-grotesk">
+                            <input type="text" value={publickey} onChange={(e) => setPublickey(e.target.value)} placeholder="Public SSH Key" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
+                        </div>
+                        <button onClick={handleSubmit} className='self-end customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk md:w-[30%]' style={{ backgroundColor: "#4D8CEC" }}>
+                            Submit
+                        </button>
+                    </div>
+                }
+                {
+                    node?.status == "pending" &&
                     <div className="flex flex-col gap-4 text-[20px] py-[20px] px-[30px] mt-[40px] rounded-[24px] dark-theme-color font-space-grotesk"
                         style={{ backgroundColor: "#fdf5e6" }}
                     >
-                        <h1 className="md:text-[24px]">👋Dear valued customer,</h1>
-                        <p className=" leading-7 ">Please note that due to our beta version, your order may take 10-15 minutes to be approved.<br />
-                            Kindly check your <b className="cursor-pointer hover:opacity-70 underline" onClick={() => navigate('/profile')}>Profile</b> page for updates.<br />
-                            Thank you for your understanding.<br />
+                        <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
+                        <p className=" leading-7 ">Please submit your SSH key and wait for your node status to become active.<br />
+                            Due to our beta version, it may take 10 to 30 minutes for your order to be approved.<br />
+                            Kindly check your node status on your profile page for updates.<br /><br />
+                            Contact us on telegram for any queries : https://t.me/+D0VlHqtqG243ZmQ0 <br /><br />
+                            Thank you for your understanding.
                         </p>
-                        <h2>
+                        {/* <h2>
                             <b>💖NimbusDapp Dev Team</b>
-                        </h2>
+                        </h2> */}
                     </div>
                 }
             </div>

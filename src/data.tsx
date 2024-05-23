@@ -47,13 +47,13 @@ const data = {
         },
     ],
     assets: [
-        {
-            "id": "A16",
-            "img": "/Nvidia-A16.png",
-            "name": "NVIDIA A16",
-            "desc": "Enabling Virtual desktops and workstations with the power and performance to tackle any project from anywhere",
+        // {
+        //     "id": "A16",
+        //     "img": "/Nvidia-A16.png",
+        //     "name": "NVIDIA A16",
+        //     "desc": "Enabling Virtual desktops and workstations with the power and performance to tackle any project from anywhere",
 
-        },
+        // },
         {
             "id": "A40",
             "img": "/Nvidia-A40.svg",
@@ -85,201 +85,201 @@ const data = {
         // }
     ],
     assetsDetail: {
-        "A16": [
-            {
-                "id": "vcg-a16-2c-8g-2vram",
-                "vcpu_count": 2,
-                "ram": 8,
-                "disk": 50,
-                "disk_count": 1,
-                "bandwidth": 1024,
-                "monthly_cost": 43,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 2,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-2c-16g-4vram",
-                "vcpu_count": 2,
-                "ram": 16,
-                "disk": 80,
-                "disk_count": 1,
-                "bandwidth": 2048,
-                "monthly_cost": 86,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 4,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-3c-32g-8vram",
-                "vcpu_count": 3,
-                "ram": 32,
-                "disk": 170,
-                "disk_count": 1,
-                "bandwidth": 3072,
-                "monthly_cost": 172,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 8,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-6c-64g-16vram",
-                "vcpu_count": 6,
-                "ram": 64,
-                "disk": 350,
-                "disk_count": 1,
-                "bandwidth": 6,
-                "monthly_cost": 344,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 16,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-12c-128g-32vram",
-                "vcpu_count": 12,
-                "ram": 128,
-                "disk": 700,
-                "disk_count": 1,
-                "bandwidth": 10,
-                "monthly_cost": 688,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 32,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-24c-256g-64vram",
-                "vcpu_count": 24,
-                "ram": 256,
-                "disk": 1200,
-                "disk_count": 1,
-                "bandwidth": 12,
-                "monthly_cost": 1375,
-                "type": "vcg",
-                "locations": [
-                    "ewr",
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 64,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-48c-496g-128vram",
-                "vcpu_count": 48,
-                "ram": 512,
-                "disk": 1500,
-                "disk_count": 1,
-                "bandwidth": 16,
-                "monthly_cost": 2750,
-                "type": "vcg",
-                "locations": [
-                    "ord",
-                    "lhr",
-                    "fra",
-                    "sjc",
-                    "nrt",
-                    "blr"
-                ],
-                "gpu_vram_gb": 128,
-                "gpu_type": "NVIDIA_A16"
-            },
-            {
-                "id": "vcg-a16-96c-960g-256vram",
-                "vcpu_count": 96,
-                "ram": 1024,
-                "disk": 1700,
-                "disk_count": 1,
-                "bandwidth": 25600,
-                "monthly_cost": 5500,
-                "type": "vcg",
-                "locations": [
-                    "lhr",
-                    "blr"
-                ],
-                "gpu_vram_gb": 256,
-                "gpu_type": "NVIDIA_A16"
-            }
-        ],
+        // "A16": [
+        //     {
+        //         "id": "vcg-a16-2c-8g-2vram",
+        //         "vcpu_count": 2,
+        //         "ram": 8,
+        //         "disk": 50,
+        //         "disk_count": 1,
+        //         "bandwidth": 1024,
+        //         "monthly_cost": 43,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 2,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-2c-16g-4vram",
+        //         "vcpu_count": 2,
+        //         "ram": 16,
+        //         "disk": 80,
+        //         "disk_count": 1,
+        //         "bandwidth": 2048,
+        //         "monthly_cost": 86,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 4,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-3c-32g-8vram",
+        //         "vcpu_count": 3,
+        //         "ram": 32,
+        //         "disk": 170,
+        //         "disk_count": 1,
+        //         "bandwidth": 3072,
+        //         "monthly_cost": 172,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 8,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-6c-64g-16vram",
+        //         "vcpu_count": 6,
+        //         "ram": 64,
+        //         "disk": 350,
+        //         "disk_count": 1,
+        //         "bandwidth": 6,
+        //         "monthly_cost": 344,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 16,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-12c-128g-32vram",
+        //         "vcpu_count": 12,
+        //         "ram": 128,
+        //         "disk": 700,
+        //         "disk_count": 1,
+        //         "bandwidth": 10,
+        //         "monthly_cost": 688,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 32,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-24c-256g-64vram",
+        //         "vcpu_count": 24,
+        //         "ram": 256,
+        //         "disk": 1200,
+        //         "disk_count": 1,
+        //         "bandwidth": 12,
+        //         "monthly_cost": 1375,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ewr",
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 64,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-48c-496g-128vram",
+        //         "vcpu_count": 48,
+        //         "ram": 512,
+        //         "disk": 1500,
+        //         "disk_count": 1,
+        //         "bandwidth": 16,
+        //         "monthly_cost": 2750,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "ord",
+        //             "lhr",
+        //             "fra",
+        //             "sjc",
+        //             "nrt",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 128,
+        //         "gpu_type": "NVIDIA_A16"
+        //     },
+        //     {
+        //         "id": "vcg-a16-96c-960g-256vram",
+        //         "vcpu_count": 96,
+        //         "ram": 1024,
+        //         "disk": 1700,
+        //         "disk_count": 1,
+        //         "bandwidth": 25600,
+        //         "monthly_cost": 5500,
+        //         "type": "vcg",
+        //         "locations": [
+        //             "lhr",
+        //             "blr"
+        //         ],
+        //         "gpu_vram_gb": 256,
+        //         "gpu_type": "NVIDIA_A16"
+        //     }
+        // ],
         "A40": [
-            {
-                "id": "vcg-a40-2c-10g-4vram",
-                "vcpu_count": 2,
-                "ram": 10,
-                "disk": 180,
-                "disk_count": 1,
-                "bandwidth": 4096,
-                "monthly_cost": 105,
-                "type": "vcg",
-                "locations": [
-                    "ewr"
-                ],
-                "gpu_vram_gb": 4,
-                "gpu_type": "NVIDIA_A40"
-            },
-            {
-                "id": "vcg-a40-6c-30g-12vram",
-                "vcpu_count": 6,
-                "ram": 30,
-                "disk": 550,
-                "disk_count": 1,
-                "bandwidth": 6,
-                "monthly_cost": 315,
-                "type": "vcg",
-                "locations": [
-                    "ewr"
-                ],
-                "gpu_vram_gb": 12,
-                "gpu_type": "NVIDIA_A40"
-            },
+            // {
+            //     "id": "vcg-a40-2c-10g-4vram",
+            //     "vcpu_count": 2,
+            //     "ram": 10,
+            //     "disk": 180,
+            //     "disk_count": 1,
+            //     "bandwidth": 4096,
+            //     "monthly_cost": 105,
+            //     "type": "vcg",
+            //     "locations": [
+            //         "ewr"
+            //     ],
+            //     "gpu_vram_gb": 4,
+            //     "gpu_type": "NVIDIA_A40"
+            // },
+            // {
+            //     "id": "vcg-a40-6c-30g-12vram",
+            //     "vcpu_count": 6,
+            //     "ram": 30,
+            //     "disk": 550,
+            //     "disk_count": 1,
+            //     "bandwidth": 6,
+            //     "monthly_cost": 315,
+            //     "type": "vcg",
+            //     "locations": [
+            //         "ewr"
+            //     ],
+            //     "gpu_vram_gb": 12,
+            //     "gpu_type": "NVIDIA_A40"
+            // },
             {
                 "id": "vcg-a40-8c-40g-16vram",
                 "vcpu_count": 8,
@@ -327,138 +327,139 @@ const data = {
                 "gpu_type": "NVIDIA_A40"
             }
         ],
-        "A100": [{
-            "id": "vcg-a100-1c-6g-4vram",
-            "vcpu_count": 1,
-            "ram": 6,
-            "disk": 70,
-            "disk_count": 1,
-            "bandwidth": 1024,
-            "monthly_cost": 90,
-            "type": "vcg",
-            "locations": [
-                "ewr",
-                "fra"
-            ],
-            "gpu_vram_gb": 4,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-1c-12g-8vram",
-            "vcpu_count": 1,
-            "ram": 12,
-            "disk": 140,
-            "disk_count": 1,
-            "bandwidth": 1024,
-            "monthly_cost": 180,
-            "type": "vcg",
-            "locations": [
-                "lhr",
-                "fra"
-            ],
-            "gpu_vram_gb": 8,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-2c-15g-10vram",
-            "vcpu_count": 2,
-            "ram": 16,
-            "disk": 170,
-            "disk_count": 1,
-            "bandwidth": 2048,
-            "monthly_cost": 250,
-            "type": "vcg",
-            "locations": [
-                "fra"
-            ],
-            "gpu_vram_gb": 10,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-3c-30g-20vram",
-            "vcpu_count": 3,
-            "ram": 30,
-            "disk": 350,
-            "disk_count": 1,
-            "bandwidth": 3072,
-            "monthly_cost": 450,
-            "type": "vcg",
-            "locations": [
-                "ewr",
-                "lhr",
-                "fra"
-            ],
-            "gpu_vram_gb": 20,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-6c-60g-40vram",
-            "vcpu_count": 6,
-            "ram": 60,
-            "disk": 700,
-            "disk_count": 1,
-            "bandwidth": 6,
-            "monthly_cost": 875,
-            "type": "vcg",
-            "locations": [
-                "fra",
-                "sjc",
-                "blr"
-            ],
-            "gpu_vram_gb": 40,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-12c-120g-80vram",
-            "vcpu_count": 12,
-            "ram": 120,
-            "disk": 1400,
-            "disk_count": 1,
-            "bandwidth": 10,
-            "monthly_cost": 1750,
-            "type": "vcg",
-            "locations": [
-                "lhr",
-                "fra",
-                "nrt",
-                "blr"
-            ],
-            "gpu_vram_gb": 80,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-24c-240g-160vram",
-            "vcpu_count": 24,
-            "ram": 250,
-            "disk": 1400,
-            "disk_count": 1,
-            "bandwidth": 10,
-            "monthly_cost": 3500,
-            "type": "vcg",
-            "locations": [
-                "fra",
-                "nrt",
-                "blr"
-            ],
-            "gpu_vram_gb": 160,
-            "gpu_type": "NVIDIA_A100"
-        },
-        {
-            "id": "vcg-a100-48c-480g-320vram",
-            "vcpu_count": 48,
-            "ram": 500,
-            "disk": 1400,
-            "disk_count": 1,
-            "bandwidth": 16,
-            "monthly_cost": 7000,
-            "type": "vcg",
-            "locations": [
-                "fra",
-                "nrt"
-            ],
-            "gpu_vram_gb": 320,
-            "gpu_type": "NVIDIA_A100"
-        }]
+        "A100": [
+            // {
+            //     "id": "vcg-a100-1c-6g-4vram",
+            //     "vcpu_count": 1,
+            //     "ram": 6,
+            //     "disk": 70,
+            //     "disk_count": 1,
+            //     "bandwidth": 1024,
+            //     "monthly_cost": 90,
+            //     "type": "vcg",
+            //     "locations": [
+            //         "ewr",
+            //         "fra"
+            //     ],
+            //     "gpu_vram_gb": 4,
+            //     "gpu_type": "NVIDIA_A100"
+            // },
+            // {
+            //     "id": "vcg-a100-1c-12g-8vram",
+            //     "vcpu_count": 1,
+            //     "ram": 12,
+            //     "disk": 140,
+            //     "disk_count": 1,
+            //     "bandwidth": 1024,
+            //     "monthly_cost": 180,
+            //     "type": "vcg",
+            //     "locations": [
+            //         "lhr",
+            //         "fra"
+            //     ],
+            //     "gpu_vram_gb": 8,
+            //     "gpu_type": "NVIDIA_A100"
+            // },
+            // {
+            //     "id": "vcg-a100-2c-15g-10vram",
+            //     "vcpu_count": 2,
+            //     "ram": 16,
+            //     "disk": 170,
+            //     "disk_count": 1,
+            //     "bandwidth": 2048,
+            //     "monthly_cost": 250,
+            //     "type": "vcg",
+            //     "locations": [
+            //         "fra"
+            //     ],
+            //     "gpu_vram_gb": 10,
+            //     "gpu_type": "NVIDIA_A100"
+            // },
+            {
+                "id": "vcg-a100-3c-30g-20vram",
+                "vcpu_count": 3,
+                "ram": 30,
+                "disk": 350,
+                "disk_count": 1,
+                "bandwidth": 3072,
+                "monthly_cost": 450,
+                "type": "vcg",
+                "locations": [
+                    "ewr",
+                    "lhr",
+                    "fra"
+                ],
+                "gpu_vram_gb": 20,
+                "gpu_type": "NVIDIA_A100"
+            },
+            {
+                "id": "vcg-a100-6c-60g-40vram",
+                "vcpu_count": 6,
+                "ram": 60,
+                "disk": 700,
+                "disk_count": 1,
+                "bandwidth": 6,
+                "monthly_cost": 875,
+                "type": "vcg",
+                "locations": [
+                    "fra",
+                    "sjc",
+                    "blr"
+                ],
+                "gpu_vram_gb": 40,
+                "gpu_type": "NVIDIA_A100"
+            },
+            {
+                "id": "vcg-a100-12c-120g-80vram",
+                "vcpu_count": 12,
+                "ram": 120,
+                "disk": 1400,
+                "disk_count": 1,
+                "bandwidth": 10,
+                "monthly_cost": 1750,
+                "type": "vcg",
+                "locations": [
+                    "lhr",
+                    "fra",
+                    "nrt",
+                    "blr"
+                ],
+                "gpu_vram_gb": 80,
+                "gpu_type": "NVIDIA_A100"
+            },
+            {
+                "id": "vcg-a100-24c-240g-160vram",
+                "vcpu_count": 24,
+                "ram": 250,
+                "disk": 1400,
+                "disk_count": 1,
+                "bandwidth": 10,
+                "monthly_cost": 3500,
+                "type": "vcg",
+                "locations": [
+                    "fra",
+                    "nrt",
+                    "blr"
+                ],
+                "gpu_vram_gb": 160,
+                "gpu_type": "NVIDIA_A100"
+            },
+            {
+                "id": "vcg-a100-48c-480g-320vram",
+                "vcpu_count": 48,
+                "ram": 500,
+                "disk": 1400,
+                "disk_count": 1,
+                "bandwidth": 16,
+                "monthly_cost": 7000,
+                "type": "vcg",
+                "locations": [
+                    "fra",
+                    "nrt"
+                ],
+                "gpu_vram_gb": 320,
+                "gpu_type": "NVIDIA_A100"
+            }]
     },
 
     NodesButtons: [
