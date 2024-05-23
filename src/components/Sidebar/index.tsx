@@ -109,7 +109,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
                     {pathname.includes(item.path) ? (
                       item.path == 'admin' ? (
-                        (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0x03966d64D440E1D6BbD3c1Ee58bA3b743C386A2f") &&
+                        (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                         <>
                           <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
                           <img src={item.img} alt='icon' />
@@ -130,7 +130,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       (
                         <>
                           {item.path == 'admin' ? (
-                            (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0x03966d64D440E1D6BbD3c1Ee58bA3b743C386A2f") &&
+                            (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                             <>
                               <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
                               <img src={item.img} alt='icon' />

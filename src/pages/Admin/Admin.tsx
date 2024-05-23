@@ -42,7 +42,7 @@ const Admin: React.FC = () => {
     }
   }
   useEffect(() => {
-    if (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0x03966d64D440E1D6BbD3c1Ee58bA3b743C386A2f") {
+    if (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") {
       toastr.success("You are an Administrator.")
     }
     else {
