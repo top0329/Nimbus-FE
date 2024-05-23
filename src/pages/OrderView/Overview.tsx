@@ -151,19 +151,16 @@ const Overview: React.FC = () => {
                 }
                 {
                     node?.status == "pending" &&
-                    <div className="flex flex-col gap-4 text-[20px] py-[20px] px-[30px] mt-[40px] rounded-[24px] dark-theme-color font-space-grotesk"
+                    <div className="flex flex-col gap-2 text-[20px] py-[15px] px-[30px] mt-[10px] rounded-[24px] dark-theme-color font-space-grotesk"
                         style={{ backgroundColor: "#fdf5e6" }}
                     >
                         <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
                         <p className=" leading-7 ">Please submit your SSH key and wait for your node status to become active.<br />
                             Due to our beta version, it may take 10 to 30 minutes for your order to be approved.<br />
-                            Kindly check your node status on your profile page for updates.<br /><br />
-                            Contact us on telegram for any queries : https://t.me/+D0VlHqtqG243ZmQ0 <br /><br />
+                            Kindly check your node status on your profile page for updates.<br />
+                            Contact us on telegram for any queries: <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">💖NimbusDapp Dev Team💖</a><br />
                             Thank you for your understanding.
                         </p>
-                        {/* <h2>
-                            <b>💖NimbusDapp Dev Team</b>
-                        </h2> */}
                     </div>
                 }
             </div>
