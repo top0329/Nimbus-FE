@@ -14,7 +14,7 @@ import axios from 'axios';
 const ENDPOINT = 'https://nimbusnetwork.net';
 
 
-const OWNERADDRESS = "0x3b69246ca867264090c0F6565b24cAB109292F15";
+const OWNERADDRESS = "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520";
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
