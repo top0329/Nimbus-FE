@@ -151,12 +151,15 @@ const Overview: React.FC = () => {
                         style={{ backgroundColor: "#fdf5e6" }}
                     >
                         <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
-                        <p className=" leading-7 ">Please submit your SSH key and wait for your node status to become active.<br />
+                        <p className=" leading-7 ">Please submit your Public SSH key and wait for your node status to become active.<br />
                             Due to our beta version, it may take 10 to 30 minutes for your order to be approved.<br />
                             Kindly check your node status on your profile page for updates.<br />
-                            Contact us on telegram for any queries: <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">💖NimbusDapp Dev Team💖</a><br />
-                            Thank you for your understanding.
                         </p>
+                        <div className="flex flex-row gap-2">
+                            <img src="/telegram.svg" alt="icon" className='h-[28px]' />
+                            <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">Contact us on telegram for any queries</a><br />
+                        </div>
+                        Thank you for your understanding.
                     </div>
                 }
             </div>
