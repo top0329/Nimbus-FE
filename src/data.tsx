@@ -41,7 +41,7 @@ const data = {
             "path": 'support'
         },
         {
-            "img": "/support.svg",
+            "img": "/admin.svg",
             "content": "Admin",
             "path": 'admin'
         },

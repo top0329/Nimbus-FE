@@ -112,7 +112,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                         <>
                           <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
-                          <img src={item.img} alt='icon' />
+                          <img src={item.img} alt='icon' className='h-[30px] w-[30px]' />
                           <span style={{ color: "#4D8CEC", fontWeight: "bold" }}>
                             {item.content}
                           </span>
@@ -133,7 +133,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                             <>
                               <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
-                              <img src={item.img} alt='icon' />
+                              <img src={item.img} alt='icon' className='h-[30px] w-[30px]' />
                               <span style={{ color: "#45628F" }}>
                                 {item.content}
                               </span>
