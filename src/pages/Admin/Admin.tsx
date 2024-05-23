@@ -65,12 +65,8 @@ const Admin: React.FC = () => {
             <input type="text" value={orderId} onChange={(e) => setOrderId(e.target.value)} placeholder="0x..." className="w-full border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
           </div>
           <div className="font-space-grotesk w-full">
-            <h1 className='text-[20px] dark-theme-color mb-[20px]'>Direct SSH Connect<span className=' text-red-700'>*</span></h1>
+            <h1 className='text-[20px] dark-theme-color mb-[20px]'>SSH Connect<span className=' text-red-700'>*</span></h1>
             <input type="text" value={direct_connect} onChange={(e) => setDirectConnect(e.target.value)} placeholder="j$X25Umf,cNw}F!p" className="w-full border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
-          </div>
-          <div className="z-0 font-space-grotesk w-full">
-            <h1 className='text-[20px] dark-theme-color mb-[20px]'>Proxy SSH Connect<span className=' text-red-700'>*</span></h1>
-            <input type="text" value={proxy_connect} onChange={(e) => setProxyConnect(e.target.value)} placeholder="149.28.117.73" className="w-full border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
           </div>
           <button onClick={handleSibmit} className='z-0 customBtn text-[18px] h-[48px] rounded-[15px] text-white w-full font-space-grotesk' style={{ backgroundColor: "#4D8CEC" }}>
             Submit

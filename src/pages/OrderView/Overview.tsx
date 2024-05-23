@@ -85,12 +85,8 @@ const Overview: React.FC = () => {
                             <h3 className="light-theme-color text-[20px]">{node?.user_scheme}</h3>
                         </div>
                         <div className="flex flex-row text-left gap-2">
-                            <h3 className="dark-theme-color text-[20px] w-[50%]">Direct SSH Connect:</h3>
+                            <h3 className="dark-theme-color text-[20px] w-[50%]">SSH Connect:</h3>
                             <h3 className="light-theme-color text-[20px]">{node?.direct_connect}</h3>
-                        </div>
-                        <div className="flex flex-row text-left gap-2">
-                            <h3 className="dark-theme-color text-[20px] w-[50%]">Proxy SSH Connect:</h3>
-                            <h3 className="light-theme-color text-[20px]">{node?.proxy_connect}</h3>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[30px] flex-[100%] md:flex-[30%]">
