@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 // const ENDPOINT = 'http://localhost:5000';
 // const ENDPOINT = 'http://149.248.9.67';
 // const ENDPOINT = 'https://nimbusnetwork.net';
-const ENDPOINT = 'http://backend.nimbusnetwork.net';
+const ENDPOINT = 'https://nimbusnetwork.net';
 
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -46,11 +46,11 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
           navigate("/dashboard");
         })
     }
-    // if (!isConnected && !hasShownWarningRef.current) {
-    //   toastr.warning("Please Connect the Wallet");
-    //   hasShownWarningRef.current = true; // Mark the warning as shown using the ref
-    //   navigate("/dashboard");
-    // }
+    if (!isConnected && !hasShownWarningRef.current) {
+      toastr.warning("Please Connect the Wallet");
+      hasShownWarningRef.current = true; // Mark the warning as shown using the ref
+      navigate("/dashboard");
+    }
   }, [isConnected]);
 
   return (
