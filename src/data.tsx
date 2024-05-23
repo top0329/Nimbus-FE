@@ -40,6 +40,11 @@ const data = {
             "content": "Support",
             "path": 'support'
         },
+        {
+            "img": "/support.svg",
+            "content": "Admin",
+            "path": 'admin'
+        },
     ],
     assets: [
         {
