@@ -106,41 +106,78 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     to={`/${item.path}`}
                     className={`group relative flex items-center gap-2.5 rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-sky-300/35 dark:hover:bg-sky-300/35`}
                   >
+
                     {pathname.includes(item.path) ? (
-                      <>
+                      item.path == 'admin' ? (
+                        (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0x03966d64D440E1D6BbD3c1Ee58bA3b743C386A2f") &&
+                        <>
+                          <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
+                          <img src={item.img} alt='icon' />
+                          <span style={{ color: "#4D8CEC", fontWeight: "bold" }}>
+                            {item.content}
+                          </span>
+                        </>
+                      ) : (<>
                         <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
                         <img src={item.img} alt='icon' />
                         <span style={{ color: "#4D8CEC", fontWeight: "bold" }}>
                           {item.content}
                         </span>
-                      </>
+                      </>)
+
                     )
                       :
                       (
                         <>
-                          {
+                          {item.path == 'admin' ? (
+                            (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0x03966d64D440E1D6BbD3c1Ee58bA3b743C386A2f") &&
+                            <>
+                              <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
+                              <img src={item.img} alt='icon' />
+                              <span style={{ color: "#45628F" }}>
+                                {item.content}
+                              </span>
+                            </>
+                          ) : (
                             pathname == "/" && item.path == "dashboard" ? (
-                              <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
+                              <>
+                                <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
+                                <img src={item.img} alt='icon' />
+                                <span style={{ color: "#45628F" }}>
+                                  {item.content}
+                                </span>
+                              </>
                             ) : (
                               (pathname.includes("/order") || pathname.includes("/overview")) && item.path == "rent" ? (
-                                <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
+                                <>
+                                  <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
+                                  <img src={item.img} alt='icon' />
+                                  <span style={{ color: "#45628F" }}>
+                                    {item.content}
+                                  </span>
+                                </>
                               ) : (
-                                <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
+                                <>
+                                  <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
+                                  <img src={item.img} alt='icon' />
+                                  <span style={{ color: "#45628F" }}>
+                                    {item.content}
+                                  </span>
+                                </>
                               )
                             )
-                          }
-                          <img src={item.img} alt='icon' />
-                          <span style={{ color: "#45628F" }}>
-                            {item.content}
-                          </span>
+
+                          )}
+
                         </>
                       )}
+
                   </NavLink>
                 </div>)
               ))
             }
           </div>
-        </nav>
+        </nav >
         <div className='flex flex-col px-[30px] py-[30px] gap-[50px]'>
           <div className='flex flex-row justify-start gap-5'>
             <a href="https://t.me/nimbusnetwork" target="_blank" rel="noopener noreferrer">
