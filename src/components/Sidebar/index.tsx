@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { data } from '../../data';
+import { addSpecs } from '../../Redux/Reducers/specificationSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAccount, useBalance } from 'wagmi'
 import { SideBar } from '../../data';
 import Identicon from "identicon.js";
@@ -13,6 +15,8 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const { address, isConnected } = useAccount();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const result = useBalance({ address: address });
   const balance = parseFloat(result.data?.formatted).toFixed(3);
   const symbol = result.data?.symbol;
@@ -86,6 +90,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     }
   }, [sidebarOpen]);
 
+  const clickHandler = (path: string) => {
+    if (path == "cpu") {
+      let specificatoinDetail: any;
+      let specifications;
+      let specs: any = [];
+      specificatoinDetail = data["CPU"].assetsDetail;
+      specifications = specificatoinDetail["CPU"];
+      specifications.map((item: any) => {
+        let detail = {
+          value: item.id,
+          label: `CPU CPU - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+          locations: item.locations,
+          monthlyCost: item.monthly_cost,
+          cpuCount: item.vcpu_count,
+          ram: item.ram,
+          storage: item.disk,
+          bandwidth: item.bandwidth
+        }
+        specs.push(detail);
+      })
+      dispatch(addSpecs(specs));
+      navigate(`/order/CPU/CPU`)
+    }
+    else {
+      navigate(`/${path}`)
+    }
+  }
+
   return (
     <aside
       ref={sidebar}
@@ -102,24 +134,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {
               SideBar.map((item, index) => (
                 (<div key={index}>
-                  <NavLink
-                    to={`/${item.path}`}
-                    className={`group relative flex items-center gap-2.5 rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-sky-300/35 dark:hover:bg-sky-300/35`}
+                  <div
+                    onClick={() => clickHandler(item.path)}
+                    className={`cursor-pointer group relative flex items-center gap-2.5 rounded-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-sky-300/35 dark:hover:bg-sky-300/35`}
                   >
 
-                    {pathname.includes(item.path) ? (
+                    {pathname.toLowerCase().includes(item.path) ? (
                       item.path == 'admin' ? (
                         (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                         <>
                           <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
-                          <img src={item.img} alt='icon' className='h-[30px] w-[30px]' />
+                          <img src={item.img} alt='icon' className='w-[30px] h-[30px]' />
                           <span style={{ color: "#4D8CEC", fontWeight: "bold" }}>
                             {item.content}
                           </span>
                         </>
                       ) : (<>
                         <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
-                        <img src={item.img} alt='icon' />
+                        <img src={item.img} alt='icon' className='w-[30px] h-[30px]' />
                         <span style={{ color: "#4D8CEC", fontWeight: "bold" }}>
                           {item.content}
                         </span>
@@ -133,7 +165,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             (address == "0xDc0197708e59295E982928Ec23444A3B8B015677" || address == "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520") &&
                             <>
                               <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
-                              <img src={item.img} alt='icon' className='h-[30px] w-[30px]' />
+                              <img src={item.img} alt='icon' className='w-[30px] h-[30px]' />
                               <span style={{ color: "#45628F" }}>
                                 {item.content}
                               </span>
@@ -142,37 +174,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             pathname == "/" && item.path == "dashboard" ? (
                               <>
                                 <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
-                                <img src={item.img} alt='icon' />
+                                <img src={item.img} alt='icon' className='w-[30px] h-[30px]' />
                                 <span style={{ color: "#45628F" }}>
                                   {item.content}
                                 </span>
                               </>
                             ) : (
-                              (pathname.includes("/order") || pathname.includes("/overview")) && item.path == "rent" ? (
-                                <>
-                                  <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC" }} />
-                                  <img src={item.img} alt='icon' />
-                                  <span style={{ color: "#45628F" }}>
-                                    {item.content}
-                                  </span>
-                                </>
-                              ) : (
-                                <>
-                                  <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
-                                  <img src={item.img} alt='icon' />
-                                  <span style={{ color: "#45628F" }}>
-                                    {item.content}
-                                  </span>
-                                </>
-                              )
+                              <>
+                                <div className='border-l-[4px] w-[15px] h-[40px] mr-3' style={{ borderColor: "#4D8CEC00" }} />
+                                <img src={item.img} alt='icon' className='w-[30px] h-[30px]' />
+                                <span style={{ color: "#45628F" }}>
+                                  {item.content}
+                                </span>
+                              </>
                             )
-
                           )}
-
                         </>
                       )}
-
-                  </NavLink>
+                  </div>
                 </div>)
               ))
             }

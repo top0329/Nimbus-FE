@@ -102,7 +102,7 @@ const Order: React.FC = () => {
                             {
                                 instanceType == "CPU" ? (
                                     <>
-                                        Cloud Computer {instanceType}
+                                        Cloud Computer Shared CPU
                                     </>
                                 ) : (
                                     <>
@@ -118,7 +118,7 @@ const Order: React.FC = () => {
                                 {
                                     instanceType == "CPU" ? (
                                         <>
-                                            Cloud Computer {instanceType}
+                                            Cloud Computer Shared CPU
                                         </>
                                     ) : (
                                         <>

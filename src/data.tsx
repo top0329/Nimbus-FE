@@ -717,9 +717,9 @@ const data = {
         assets: [
             {
                 "id": "CPU",
-                "img": "/Nvidia-A100.png",
+                "img": "/cpu.png",
                 "name": "Cloud Compute",
-                "desc": "Enabling researchers and scientists to combine simulation, data analytics , and AI to drive scientific progress",
+                "desc": "Virtual machines for apps with bursty performance, e.g. low traffic websites, blogs, CMS, dev/test environments, and small databases.",
 
             }
         ],
@@ -1056,7 +1056,7 @@ const SideBar = [
         "path": 'gpu'
     },
     {
-        "img": "/rent.svg",
+        "img": "/cpu.png",
         "content": "Rent CPU",
         "path": 'cpu'
     },
