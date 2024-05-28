@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-redux": "^8.0.0",
-    "react-router-dom": "^6.14.2",
+    "react-router-dom": "^6.23.1",
     "toastr": "^2.1.4",
     "uuid": "^9.0.1",
     "viem": "^1.19.3",

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { os, vcgOs } from '../data';
+import { Os, data } from '../data';
 interface SelectBoxProps {
     heading: string;
     setOsType: (osType: string) => void;
     setOsList: (list: osType[]) => void;
+    serviceType: string;
 }
 export interface osType {
     "id": number;
@@ -16,7 +17,7 @@ function getOsById(data: Record<string, osType[]>, id: string): osType[] {
     const osList = data[id];
     return osList; // Return the first instance or undefined
 }
-const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, setOsType, setOsList }) => {
+const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, setOsType, setOsList, serviceType }) => {
 
     const [selectedOption, setSelectedOption] = useState<string>("");
 
@@ -24,14 +25,14 @@ const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, setOsType, setOsLi
         setSelectedOption(e.target.value);
         const osname: string = e.target.value.replace(/\s+/g, '').toLowerCase();
         setOsType(osname);
-        setOsList(getOsById(os, osname));
+        setOsList(getOsById(Os, osname));
     };
     useEffect(() => {
-        setSelectedOption(vcgOs[0]);
-        const osname: string = vcgOs[0].replace(/\s+/g, '').toLowerCase();
+        setSelectedOption(data[serviceType].os[0]);
+        const osname: string = data[serviceType].os[0].replace(/\s+/g, '').toLowerCase();
         setOsType(osname);
-        setOsList(getOsById(os, osname));
-    }, [vcgOs]);
+        setOsList(getOsById(Os, osname));
+    }, [data]);
     return (
         <div className='flex flex-col gap-5 font-space-grotesk'>
             <h1 className='text-[20px] dark-theme-color'>{heading}<span className=' text-red-700'>*</span></h1>
@@ -41,7 +42,7 @@ const OsTypeSelectBox: React.FC<SelectBoxProps> = ({ heading, setOsType, setOsLi
                     value={selectedOption}
                     style={{ backgroundColor: "#F5FAFF" }}
                 >
-                    {vcgOs.map((os, index) => (
+                    {data[serviceType].os.map((os, index) => (
                         <option key={index} value={os} className='text-[11px] md:text-[16px]'>
                             {os}
                         </option>

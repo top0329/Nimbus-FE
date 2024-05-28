@@ -6,10 +6,7 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import ProfileCard from './ProfileCard';
 import { useAccount } from 'wagmi';
 import { addOrder } from '../../Redux/Reducers/orderSlice';
-
-// const ENDPOINT = 'http://localhost:5000';
-// const ENDPOINT = 'http://149.248.9.67:5000';
-const ENDPOINT = 'https://nimbusnetwork.net';
+import { ENDPOINT } from '../../data';
 
 const Profile: React.FC = () => {
 

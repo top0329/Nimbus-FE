@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAccount, useBalance } from 'wagmi'
-import { data } from '../../data';
+import { SideBar } from '../../data';
 import Identicon from "identicon.js";
 
 interface SidebarProps {
@@ -100,7 +100,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <nav className="mt-5 py-4 md:mt-5">
           <div className="mb-6 flex flex-col gap-1.5">
             {
-              data.SideBar.map((item, index) => (
+              SideBar.map((item, index) => (
                 (<div key={index}>
                   <NavLink
                     to={`/${item.path}`}

@@ -11,22 +11,27 @@ import { data } from "../../data";
 import OsVersionSelectBox from "../../components/OsVersionSelectBox";
 import OsTypeSelectBox from "../../components/OsTypeSelectBox";
 
-function getAssetDescription(id: string | undefined) {
-    const assets = data.assets;
+function getAssetDescription(id: string | undefined, serviceId: string) {
+    const assets = data[serviceId].assets;
     const asset = assets.find(asset => asset.id === id);
     return asset ? asset.desc : 'Asset not found';
 }
-function getAssetImage(id: string | undefined) {
-    const assets = data.assets;
+function getAssetImage(id: string | undefined, serviceId: string) {
+    const assets = data[serviceId].assets;
     const asset = assets.find(asset => asset.id === id);
     return asset ? asset.img : 'Asset not found';
 }
 
 const Order: React.FC = () => {
-    const instance = useParams<{ id: string }>();
-    const instanceType = instance.id;
-    const instanceDesc = getAssetDescription(instanceType);
-    const instanceImg = getAssetImage(instanceType);
+    const instance = useParams<{ service: string, instance: string }>();
+    const serviceType = instance.service;
+    const instanceType = instance.instance;
+    let instanceDesc;
+    let instanceImg;
+    if (serviceType != undefined) {
+        instanceDesc = getAssetDescription(instanceType, serviceType);
+        instanceImg = getAssetImage(instanceType, serviceType);
+    }
 
     const [selectedInstanceId, setInstanceId] = useState<string>("");
 
@@ -94,13 +99,33 @@ const Order: React.FC = () => {
                     <div className="md:visible hidden md:flex flex-col text-center gap-5 border-[1px] border-dashed rounded-[27px] py-[30px] px-[40px] items-center justify-between" style={{ borderColor: "#4D8CEC" }}>
                         <img src={instanceImg} className="h-[150px] w-[220px]" />
                         <h1 className="font-press-start-2p text-4 font-press-start-2p">
-                            NVIDIA {instanceType}
+                            {
+                                instanceType == "CPU" ? (
+                                    <>
+                                        Cloud Computer {instanceType}
+                                    </>
+                                ) : (
+                                    <>
+                                        NVIDIA {instanceType}
+                                    </>
+                                )
+                            }
                         </h1>
                     </div>
                     <div className="flex flex-col justify-between gap-[30px] w-full">
                         <div className="flex flex-col gap-[30px]">
                             <h1 className="font-press-start-2p text-[24px]">
-                                NVIDIA {instanceType}
+                                {
+                                    instanceType == "CPU" ? (
+                                        <>
+                                            Cloud Computer {instanceType}
+                                        </>
+                                    ) : (
+                                        <>
+                                            NVIDIA {instanceType}
+                                        </>
+                                    )
+                                }
                             </h1>
                             <p className="font-space-grotesk text-[18px] md:w-[50%]">
                                 {instanceDesc}
@@ -132,6 +157,7 @@ const Order: React.FC = () => {
                         heading="Select the operating System"
                         setOsType={setOsType}
                         setOsList={setOsList}
+                        serviceType={serviceType}
                     />
                     <OsVersionSelectBox
                         heading="Select the operating Version"

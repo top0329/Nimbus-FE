@@ -10,11 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrder } from '../../Redux/Reducers/orderSlice';
-
-// const ENDPOINT = "http://localhost:5000";
-// const ENDPOINT = 'http://149.248.9.67:5000';
-const ENDPOINT = 'https://nimbusnetwork.net';
-
+import { ENDPOINT } from '../../data';
 
 interface ModalProps {
     isOpen: boolean;

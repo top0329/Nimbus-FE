@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { os } from '../data';
+import { Os } from '../data';
 interface SelectBoxProps {
     heading: string;
     osVersion: string;
@@ -19,7 +19,7 @@ function getOsById(data: Record<string, osVersionType[]>, id: string): osVersion
     return osList; // Return the first instance or undefined
 }
 function getNameById(id: number, osData: osVersionType[]) {
-    const osItem = osData.find(os => os.id == id);
+    const osItem = osData.find(Os => Os.id == id);
     return osItem ? osItem.name : 'OS not found';
 }
 const OsVersionSelectBox: React.FC<SelectBoxProps> = ({ heading, osVersion, osVersionList, setOsId, setOsLable }) => {

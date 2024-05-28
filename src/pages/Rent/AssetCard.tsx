@@ -8,33 +8,54 @@ interface CardProps {
   img: string;
   name: string;
   desc: string;
+  serviceType: string;
 }
-const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc }) => {
+const AssetCard: React.FC<CardProps> = ({ instanceId, img, name, desc, serviceType }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const addOrderHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const specificatoinDetail = data.assetsDetail;
-    const specifications = specificatoinDetail[instanceId];
-
+    let specificatoinDetail: any;
+    let specifications;
     let specs: any = [];
-    specifications.map((item: any) => {
-      let detail = {
-        value: item.id,
-        label: `NVIDIA ${instanceId} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
-        locations: item.locations,
-        monthlyCost: item.monthly_cost,
-        cpuCount: item.vcpu_count,
-        ram: item.ram,
-        storage: item.disk,
-        bandwidth: item.bandwidth
-      }
-      specs.push(detail);
-    })
-    dispatch(addSpecs(specs));
 
+    if (serviceType == "GPU") {
+      specificatoinDetail = data["GPU"].assetsDetail;
+      specifications = specificatoinDetail[instanceId];
+      specifications.map((item: any) => {
+        let detail = {
+          value: item.id,
+          label: `NVIDIA ${instanceId} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+          locations: item.locations,
+          monthlyCost: item.monthly_cost,
+          cpuCount: item.vcpu_count,
+          ram: item.ram,
+          storage: item.disk,
+          bandwidth: item.bandwidth
+        }
+        specs.push(detail);
+      })
+    }
+    else {
+      specificatoinDetail = data["CPU"].assetsDetail;
+      specifications = specificatoinDetail[instanceId];
+      specifications.map((item: any) => {
+        let detail = {
+          value: item.id,
+          label: `CPU ${instanceId} - ${item.vcpu_count}vCPUs ${item.ram} GB RAM ${item.disk} GB NVMe`,
+          locations: item.locations,
+          monthlyCost: item.monthly_cost,
+          cpuCount: item.vcpu_count,
+          ram: item.ram,
+          storage: item.disk,
+          bandwidth: item.bandwidth
+        }
+        specs.push(detail);
+      })
+    }
+    dispatch(addSpecs(specs));
     event.preventDefault();
-    navigate(`/order/${instanceId}`);
+    navigate(`/order/${serviceType}/${instanceId}`);
   };
 
   return (

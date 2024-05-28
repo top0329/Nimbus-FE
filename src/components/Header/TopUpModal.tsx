@@ -9,12 +9,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useAccount, useSendTransaction } from 'wagmi';
 import { updateBalance } from '../../Redux/Reducers/userSlice';
 import axios from 'axios';
-// const ENDPOINT = "http://localhost:5000";
-// const ENDPOINT = 'http://149.248.9.67:5000';
-const ENDPOINT = 'https://nimbusnetwork.net';
+import { OWNERADDRESS } from '../../data';
+import { ENDPOINT } from '../../data';
 
-
-const OWNERADDRESS = "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520";
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
