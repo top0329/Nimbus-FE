@@ -12,7 +12,6 @@ import Staking from './pages/Staking/Staking';
 import Profile from './pages/Profile/Profile';
 import Support from './pages/Support/Support';
 import Admin from './pages/Admin/Admin';
-
 function App() {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();

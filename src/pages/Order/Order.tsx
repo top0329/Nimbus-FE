@@ -59,6 +59,7 @@ const Order: React.FC = () => {
 
     useEffect(() => {
         setDetail({
+            serviceType:serviceType,
             instanceId: selectedInstanceId,
             name: hostname,
             locationId: locationId,

@@ -19,6 +19,7 @@ interface ModalProps {
 }
 
 export interface orderSummary {
+    serviceType: string;
     instanceId: string;
     name: string;
     os: string | null;
@@ -38,6 +39,7 @@ export interface orderSummary {
 
 const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) => {
     //meta detail
+    const serviceType = orderDetail?.serviceType;
     const name = orderDetail?.name.replace(/[^a-zA-Z\-]/g, '');
     const instanceId = orderDetail?.instanceId;
     const osId = orderDetail?.osId;
@@ -76,6 +78,7 @@ const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) =>
                 let orderId = uuidv4();
                 const payload = {
                     orderId,
+                    serviceType,
                     name,
                     instanceId,
                     locationId,
@@ -101,7 +104,7 @@ const SummaryModal: React.FC<ModalProps> = ({ isOpen, onClose, orderDetail }) =>
                         dispatch(addOrder(response.data));
                         setStatus("");
                         onClose();
-                        toastr.success("Succefully Ordered!")
+                        toastr.success("Succefully Ordered!");
                         navigate(`/overview/${orderId}`);
                     })
                     .catch((error) => {

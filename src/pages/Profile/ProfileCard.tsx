@@ -77,7 +77,7 @@ const ProfileCard: React.FC = () => {
                                 </div>
                             )
                         ) : (
-                            <div className="border border-dashed rounded-[20px] border-t-0 overflow-hidden" style={{ borderColor: "#4D8CEC" }}>
+                            <div className="border border-dashed rounded-[20px] border-t-0 overflow-y-scroll md:max-h-[400px]" style={{ borderColor: "#4D8CEC" }}>
                                 <table className="w-full font-space-grotesk">
                                     <thead className='bg-light-theme-color text-white text-[18px] h-[60px]'>
                                         <tr>

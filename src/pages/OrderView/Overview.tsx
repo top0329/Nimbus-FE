@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faCopy, faAsterisk } from '@fortawesome/free-solid-svg-icons';
 import DefaultLayout from "../../layout/DefaultLayout";
 import { useParams } from "react-router-dom";
 import { useAccount } from "wagmi";
@@ -12,6 +15,9 @@ const Overview: React.FC = () => {
     const [node, setNode] = useState<any>();
     const [publickey, setPublickey] = useState<string>();
     const { isConnected, address } = useAccount();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [showMessage, setShowMessage] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = () => {
         axios.put(`${ENDPOINT}/api/order/update/publickey/${address}`,
             {
@@ -42,7 +48,19 @@ const Overview: React.FC = () => {
         }
         hasShownWarningRef.current = true;
     }, [isConnected]);
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    };
 
+    const copyToClipboard = async (text: any) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setShowMessage(true);
+            setTimeout(() => setShowMessage(false), 500); // Hide the message after 1.5 seconds
+        } catch (err) {
+            toastr.error("Something went wrong...")
+        }
+    };
     return (
         <DefaultLayout>
             <div className="flex flex-col w-full">
@@ -81,10 +99,58 @@ const Overview: React.FC = () => {
                             <h3 className="dark-theme-color text-[20px] w-[50%]">Username:</h3>
                             <h3 className="light-theme-color text-[20px]">{node?.user_scheme}</h3>
                         </div>
-                        <div className="flex flex-row text-left gap-2">
-                            <h3 className="dark-theme-color text-[20px] w-[50%]">SSH Connect:</h3>
-                            <h3 className="light-theme-color text-[20px]">{node?.direct_connect}</h3>
-                        </div>
+                        {
+                            node?.serviceType == "GPU" ? (
+                                <div className="flex flex-row text-left gap-2">
+                                    <h3 className="dark-theme-color text-[20px] w-[50%]">SSH Connect:</h3>
+                                    <h3 className="light-theme-color text-[20px]">{node?.direct_connect}</h3>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="flex flex-row text-left gap-2">
+                                        <h3 className="dark-theme-color text-[20px] w-[50%]">IP Address:</h3>
+                                        <h3 className="light-theme-color text-[20px]">{node?.main_ip}</h3>
+                                    </div>
+                                    <div className="flex flex-row text-left items-center gap-2">
+                                        <h3 className="dark-theme-color text-[20px] w-[50%]">Password:</h3>
+                                        <div className="flex flex-row items-center">
+                                            <div className="w-[100px] overflow-hidden mr-2">
+                                                {
+                                                    isVisible ?
+                                                        (<h2 className="light-theme-color text-[16px]">{node?.default_password}</h2>) : (
+                                                            <>
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                                <FontAwesomeIcon icon={faAsterisk} className="light-theme-color h-[12px] w-[12px]" />
+                                                            </>
+                                                        )
+                                                }
+                                            </div>
+                                            <div className="flex flex-row gap-3 items-center">
+                                                {
+                                                    isVisible ?
+                                                        <FontAwesomeIcon onClick={toggleVisibility} icon={faEyeSlash} className="light-theme-color cursor-pointer" />
+                                                        :
+                                                        <FontAwesomeIcon onClick={toggleVisibility} icon={faEye} className="light-theme-color cursor-pointer" />
+                                                }
+                                                <div className="relative">
+                                                    <FontAwesomeIcon icon={faCopy} className="light-theme-color cursor-pointer" onClick={() => copyToClipboard(node?.default_password)} />
+                                                    {showMessage && (
+                                                        <div className="absolute bottom-[25px] right-[10px] w-[80px] light-theme-color border border-dashed shadow-md p-1 rounded mt-0 transition-opacity">
+                                                            copied !
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        }
                     </div>
                     <div className="flex flex-col gap-[30px] flex-[100%] md:flex-[30%]">
                         <div className="flex flex-col gap-3">
@@ -132,7 +198,7 @@ const Overview: React.FC = () => {
                     </div>
                 </div>
                 {
-                    node?.status == "pending" &&
+                    (node?.status == "pending" && node?.serviceType == "GPU") &&
                     <div className="flex flex-row gap-4 w-full justify-center mt-4">
                         <div className="font-space-grotesk">
                             <input type="text" value={publickey} onChange={(e) => setPublickey(e.target.value)} placeholder="Public SSH Key" className="border border-dashed rounded-[10px] light-theme-color text-[16px] py-3 px-2 customInput bg-transparent focus:outline-none" style={{ borderColor: "#4D8CEC" }}></input>
@@ -144,20 +210,39 @@ const Overview: React.FC = () => {
                 }
                 {
                     node?.status == "pending" &&
-                    <div className="flex flex-col gap-2 text-[20px] py-[15px] px-[30px] mt-[10px] rounded-[24px] dark-theme-color font-space-grotesk"
-                        style={{ backgroundColor: "#fdf5e6" }}
-                    >
-                        <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
-                        <p className=" leading-7 ">Please submit your Public SSH key and wait for your node status to become active.<br />
-                            Due to our beta version, it may take 10 to 30 minutes for your order to be approved.<br />
-                            Kindly check your node status on your profile page for updates.<br />
-                        </p>
-                        <div className="flex flex-row gap-2">
-                            <img src="/telegram.svg" alt="icon" className='h-[28px]' />
-                            <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">Contact us on telegram for any queries</a><br />
-                        </div>
-                        Thank you for your understanding.
-                    </div>
+                    (
+                        node?.serviceType == "GPU" ? (
+                            <div className="flex flex-col gap-2 text-[20px] py-[15px] px-[30px] mt-[10px] rounded-[24px] dark-theme-color font-space-grotesk"
+                                style={{ backgroundColor: "#fdf5e6" }}
+                            >
+                                <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
+                                <p className=" leading-7 ">Please submit your Public SSH key and wait for your node status to become active.<br />
+                                    Due to our beta version, it may take 10 to 30 minutes for your order to be approved.<br />
+                                    Kindly check your node status on your profile page for updates.<br />
+                                </p>
+                                <div className="flex flex-row gap-2">
+                                    <img src="/telegram.svg" alt="icon" className='h-[28px]' />
+                                    <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">Contact us on telegram for any queries</a><br />
+                                </div>
+                                Thank you for your understanding.
+                            </div>
+                        ) : (
+                            <div className="flex flex-col gap-2 text-[20px] py-[15px] px-[30px] mt-[10px] rounded-[24px] dark-theme-color font-space-grotesk"
+                                style={{ backgroundColor: "#fdf5e6" }}
+                            >
+                                <h1 className="md:text-[20px]">👋Dear valued customer,</h1>
+                                <p className=" leading-7 ">Please note that due to our beta version, your order may take 10-15 minutes to be approved.<br />
+                                    Kindly check your <b className="cursor-pointer hover:opacity-70 underline" onClick={() => navigate('/profile')}>Profile</b> page for updates.<br />
+                                    Thank you for your understanding.<br />
+                                </p>
+                                <div className="flex flex-row gap-2">
+                                    <img src="/telegram.svg" alt="icon" className='h-[28px]' />
+                                    <a href="https://t.me/+D0VlHqtqG243ZmQ0" className="underline hover:opacity-80">Contact us on telegram for any queries</a><br />
+                                </div>
+                                Thank you for your understanding.
+                            </div>
+                        )
+                    )
                 }
             </div>
         </DefaultLayout >
