@@ -21,25 +21,25 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isConnected && !hasShownWarningRef.current) {
-      //Backend Fetch & Register
-      axios.post(`${ENDPOINT}/api/user/${address}`)
-        .then(response => {
-          const { avatar, balance, wallet } = response.data.user;
-          dispatch(addUserInfo(
-            {
-              address: wallet,
-              avatar,
-              balance
-            }
-          ));
-          hasShownWarningRef.current = true; // Mark the warning as shown using the ref
-        })
-        .catch(err => {
-          toastr.error("Server Disconnected.");
-          navigate("/dashboard");
-        })
-    }
+    // if (isConnected && !hasShownWarningRef.current) {
+    //   //Backend Fetch & Register
+    //   axios.post(`${ENDPOINT}/api/user/${address}`)
+    //     .then(response => {
+    //       const { avatar, balance, wallet } = response.data.user;
+    //       dispatch(addUserInfo(
+    //         {
+    //           address: wallet,
+    //           avatar,
+    //           balance
+    //         }
+    //       ));
+    //       hasShownWarningRef.current = true; // Mark the warning as shown using the ref
+    //     })
+    //     .catch(err => {
+    //       toastr.error("Server Disconnected.");
+    //       navigate("/dashboard");
+    //     })
+    // }
     if (!isConnected && !hasShownWarningRef.current) {
       toastr.warning("Please Connect the Wallet");
       hasShownWarningRef.current = true; // Mark the warning as shown using the ref

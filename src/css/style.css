@@ -39,6 +39,15 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
   animation: releaseEffect 0.3s ease-in-out forwards;
 }
+.maxBtn:hover {
+  animation: scaleUp 0.3s ease-in-out;
+}
+.maxBtn:active {
+  background-color: #3c50e0;
+  transform: scale(0.95);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: releaseEffect 0.3s ease-in-out forwards;
+}
 .submitBtn:hover {
   color:white;
   background-color: #4D8CEC;
@@ -75,9 +84,6 @@
 }
 .stakeContainer{
   cursor: pointer;
-}
-.stakeContainer:hover{
-  box-shadow: 0 4px 8px 0 rgba(77, 140, 236, 0.7), 0 6px 20px 0 rgba(77, 140, 236, 0.5);
 }
 .profileContainer{
   cursor: pointer;
@@ -178,17 +184,17 @@ option {
   width: 2px; /* Width of the scrollbar */
   height: 4px;
  }
- 
+
  ::-webkit-scrollbar-track {
   background: #f1f1f100; /* Color of the track */
  }
- 
+
  ::-webkit-scrollbar-thumb {
   background: #24224d; /* Color of the scrollbar thumb */
   background: #4D8CEC; /* Color of the scrollbar thumb */
   border-radius: 4px; /* Rounded corners for the scrollbar thumb */
  }
- 
+
  ::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color of the scrollbar thumb on hover */
  }
@@ -430,4 +436,78 @@ span.flatpickr-weekday,
 
 [x-cloak] {
   display: none !important;
+}
+
+.spinner-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #040a0f;
+  z-index: 100000 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 6rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: pulsOut 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));
+}
+
+.loader:before {
+  width: 100%;
+  padding-bottom: 100%;
+  box-shadow: inset 0 0 0 1rem #fff;
+  animation-name: pulsIn;
+}
+
+.loader:after {
+  width: calc(100% - 2rem);
+  padding-bottom: calc(100% - 2rem);
+  box-shadow: 0 0 0 0 #fff;
+}
+
+@keyframes pulsIn {
+  0% {
+    box-shadow: inset 0 0 0 1rem #fff;
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    box-shadow: inset 0 0 0 0 #fff;
+    opacity: 0;
+  }
+}
+
+@keyframes pulsOut {
+
+  0%,
+  50% {
+    box-shadow: 0 0 0 0 #fff;
+    opacity: 0;
+  }
+
+  100% {
+    box-shadow: 0 0 0 1rem #fff;
+    opacity: 1;
+  }
 }

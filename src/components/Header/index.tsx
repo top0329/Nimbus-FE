@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TopUpBtn from './TopUpBtn';
 import Balance from './Balance';
-
+import WalletConnectBtn from "./WalletConnectBtn"
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
@@ -18,7 +18,7 @@ const Header = (props: {
           <div className="flex items-center">
             <TopUpBtn />
             <Balance />
-            <w3m-button />
+            <WalletConnectBtn />
           </div>
           <button
             aria-controls="sidebar"

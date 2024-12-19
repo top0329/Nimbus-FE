@@ -34,7 +34,7 @@ const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const [depositAmount, setDepositAmount] = useState<string>("");
     const [status, setStatus] = useState<string>("");
     const { address } = useAccount();
-    const { sendTransaction, isLoading, isSuccess, isError, isIdle } = useSendTransaction()
+    const { sendTransaction, isSuccess, isError, isIdle, isPending } = useSendTransaction()
     const hasShownWarningRef = useRef(false);
     const dispatch = useDispatch();
     const userInfo = useSelector((state: any) => state.user);
@@ -107,7 +107,7 @@ const TopUpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     </div>
                 </div>
                 <div className='w-full px-4 py-2'>
-                    <button disabled={isLoading} type="button" className="w-full submitBtn bg-light-theme-color text-white rounded-[10px] py-3 text-4" onClick={handleSubmit} style={{ borderColor: "#4D8CEC" }}>
+                    <button disabled={isPending} type="button" className="w-full submitBtn bg-light-theme-color text-white rounded-[10px] py-3 text-4" onClick={handleSubmit} style={{ borderColor: "#4D8CEC" }}>
                         < span className="ml-2 text-[15px] md:text-[18px]" >{status === "loading" ? <Loading /> : "Submit"}</span >
                     </button>
                 </div>

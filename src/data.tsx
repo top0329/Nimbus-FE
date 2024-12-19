@@ -1,3 +1,5 @@
+import { Hex } from "viem";
+
 const data = {
     "GPU": {
         assets: [
@@ -1476,6 +1478,6 @@ const Os = {
     ]
 };
 const ENDPOINT = 'https://dapp.nimbusnetwork.io';
-const OWNERADDRESS = "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520";//tony
+const OWNERADDRESS: Hex = "0xBBa3114Ca655ed1F5C2eDea6cA72Eb5BB303a520";//tony
 
 export { data, locationData, SideBar, Os, NodesButtons, FAQs, ENDPOINT, OWNERADDRESS }
